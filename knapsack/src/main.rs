@@ -1,5 +1,6 @@
 use std::env;
 use std::fmt;
+use clap::Parser;
 use std::fs::File;
 use std::cmp::Reverse;
 use indicatif::{ProgressBar, ProgressIterator};
@@ -16,6 +17,27 @@ struct Item {
     id: String,
     value: usize,
     weight: usize
+}
+
+/// A program to find optimal knapsack solutions
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    /// Name of the file with the knapsack items
+    #[arg(short, long, value_name = "FILE")]
+    file: String,
+
+    /// Three greedy algorithms: fast & worst
+    #[arg(short, long)]
+    greedy: bool,
+
+    /// Exhaustive search algorithm: slow & best
+    #[arg(short, long)]
+    exhaustive: bool,
+
+    /// Exhaustive search algorithm with pruning: faster & best
+    #[arg(short, long)]
+    better_exhaustive: bool
 }
 
 impl Knapsack {
@@ -59,7 +81,7 @@ impl fmt::Display for Knapsack {
     }
 }
 
-fn parse_file(file_name: &str) -> io::Result<Knapsack> {
+fn parse_file(file_name: String) -> io::Result<Knapsack> {
     let file = File::open(file_name)?;
     let reader = BufReader::new(file);
 
@@ -73,7 +95,7 @@ fn parse_file(file_name: &str) -> io::Result<Knapsack> {
     for (n, line) in reader.lines().enumerate() {
         let l = match line {
             Ok(s) => { s },
-            Err(e) => { panic!("Failed to parse line in {}: {}", file_name, e); }
+            Err(e) => { panic!("Failed to parse line {}", e); }
         };
 
         let v: Vec<&str> = l.split(',').collect();
@@ -203,6 +225,11 @@ fn exhaustive_pruning(k: &Knapsack) -> Knapsack {
 // v: value of max
 // c: current configuration to test
 // n: number of items available to steal
+// i: the bit that was just flipped,
+//    we need to know this as we shouldn't
+//    flip any bits to the right of this one,
+//    otherwise we'll overflow the stack
+// b: the progress bar
 fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n: usize, i: i8, b: ProgressBar) -> (usize, usize, usize) {
     let mut temp = c;
     let mut weight = 0;
@@ -221,6 +248,7 @@ fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n
         temp ^= 2_usize.pow(index as u32);
     }
 
+    // Recur if under weight limit
     if weight <= k.weight {
         if value > v {
             (m, w, v) = (c, weight, value);
@@ -231,8 +259,12 @@ fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n
         for x in ((i + 1) as u32)..(n as u32) {
             (m, w, v) = recur(k, (m, w, v), c ^ (1usize << x), n, x as i8, b.clone());
         }
+    // We're over the weight limit,
+    // we can return and not recur,
+    // thereby pruning this branch
     } else {
-        b.inc(2u64.pow((n - i as usize) as u32));
+        // increment progress bar by number of states we pruned
+        b.inc(2u64.pow((n - (i + 1) as usize) as u32));
     }
 
     return (m, w, v);
@@ -240,41 +272,42 @@ fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let args = Args::parse();
     
     let mut items: Knapsack;
     
-    if args.len() > 1 {
-        items = match parse_file(&args[1]) {
-            Ok(i) => { i },
-            Err(e) => { panic!("Failed to parse {}: {}", &args[1], e); }
-        };
-    } else {
-        eprintln!("No filename found!");
-        return;
-    }
+    items = match parse_file(args.file) {
+        Ok(i) => { i },
+        Err(e) => { panic!("Failed to parse file: {}", e); }
+    };
 
     println!("Knapsack of goods to be stolen:");
     println!("{}", items);
 
-    println!("\nGreedy solution prioritizing weight");
-    // Sort by ascending weight
-    items.items.sort_by_key(|x| x.weight);
-    println!("{}", greedy(&items));
+    if args.greedy {
+        println!("\nGreedy solution prioritizing weight");
+        // Sort by ascending weight
+        items.items.sort_by_key(|x| x.weight);
+        println!("{}", greedy(&items));
 
-    println!("\nGreedy solution prioritizing value");
-    // Sort by descending value
-    items.items.sort_by_key(|x| Reverse(x.value));
-    println!("{}", greedy(&items));
+        println!("\nGreedy solution prioritizing value");
+        // Sort by descending value
+        items.items.sort_by_key(|x| Reverse(x.value));
+        println!("{}", greedy(&items));
 
-    println!("\nGreedy solution prioritizing weight/value");
-    // Sort by descending weight:value ratio
-    items.items.sort_by_key(|x| x.weight / x.value);
-    println!("{}", greedy(&items));
+        println!("\nGreedy solution prioritizing weight/value");
+        // Sort by descending weight:value ratio
+        items.items.sort_by_key(|x| x.weight / x.value);
+        println!("{}", greedy(&items));
+    } else if args.exhaustive {
+        println!("\nExhaustive search");
+        println!("{}", exhaustive(&items));
+    } else {
+        if !args.better_exhaustive {
+            eprintln!("No method found, defaulting to exhaustive with pruning");
+        }
 
-    //println!("\nExhaustive search");
-    //println!("{}", exhaustive(&items));
-
-    println!("\nExhaustive search with pruning");
-    println!("{}", exhaustive_pruning(&items));
+        println!("\nExhaustive search with pruning");
+        println!("{}", exhaustive_pruning(&items));
+    }
 }
