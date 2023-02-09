@@ -20,8 +20,8 @@ struct Item {
 
 impl Knapsack {
     fn add(&mut self, i: &Item) {
-        self.num_items += 1;
         self.items.push(i.clone());
+        self.num_items = self.items.len();
     }
 }
 
@@ -82,11 +82,11 @@ fn parse_file(file_name: &str) -> io::Result<Knapsack> {
             items.items.push(
                 Item {
                     id: String::from(v[0]),
-                    value: match v[2][1..].parse() {
+                    value: match v[2].strip_prefix(" ").unwrap_or(v[2]).parse() {
                         Ok(s) => { s },
                         Err(e) => { panic!("Failed to parse value on line {}: {}", n, e); }
                     },
-                    weight: match v[1][1..].parse() {
+                    weight: match v[1].strip_prefix(" ").unwrap_or(v[1]).parse() {
                         Ok(s) => { s },
                         Err(e) => { panic!("Failed to parse weight on line {}: {}", n, e); }
                     },
@@ -180,7 +180,7 @@ fn exhaustive(k: &Knapsack) -> Knapsack {
 fn exhaustive_pruning(k: &Knapsack) -> Knapsack {
     let b = ProgressBar::new(2_u64.pow(k.items.len() as u32));
 
-    let (mut m, w, _) = recur(&k, (0, 0, 0), 0, k.items.len(), b.clone());
+    let (mut m, w, _) = recur(&k, (0, 0, 0), 0, k.items.len(), -1, b.clone());
 
     let mut knap = Knapsack {
         num_items: m.count_ones() as usize,
@@ -203,10 +203,7 @@ fn exhaustive_pruning(k: &Knapsack) -> Knapsack {
 // v: value of max
 // c: current configuration to test
 // n: number of items available to steal
-fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n: usize, b: ProgressBar) -> (usize, usize, usize) {
-
-    println!("Trying configuration {:#018b}", c);
-
+fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n: usize, i: i8, b: ProgressBar) -> (usize, usize, usize) {
     let mut temp = c;
     let mut weight = 0;
     let mut value = 0;
@@ -224,19 +221,18 @@ fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n
         temp ^= 2_usize.pow(index as u32);
     }
 
-    b.inc(1);
-
     if weight <= k.weight {
         if value > v {
             (m, w, v) = (c, weight, value);
         } 
             
-        let mut num: usize = 1;
+        b.inc(1);
 
-        for _ in 0..usize::BITS {
-            (m, w, v) = recur(k, (m, w, v), c ^ num, n, b.clone());
-            num = num << 1;
+        for x in ((i + 1) as u32)..(n as u32) {
+            (m, w, v) = recur(k, (m, w, v), c ^ (1usize << x), n, x as i8, b.clone());
         }
+    } else {
+        b.inc(2u64.pow((n - i as usize) as u32));
     }
 
     return (m, w, v);
