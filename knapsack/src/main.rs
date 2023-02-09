@@ -2,19 +2,20 @@ use std::env;
 use std::fmt;
 use std::fs::File;
 use std::cmp::Reverse;
+use indicatif::{ProgressBar, ProgressIterator};
 use std::io::{self, prelude::*, BufReader};
 
 struct Knapsack {
-    num_items: u16,
-    weight: u16,
+    num_items: usize,
+    weight: usize,
     items: Vec<Item>
 }
 
 #[derive(Clone)]
 struct Item {
     id: String,
-    value: u16,
-    weight: u16
+    value: usize,
+    weight: usize
 }
 
 impl Knapsack {
@@ -32,7 +33,7 @@ impl fmt::Display for Item {
 
 impl fmt::Display for Knapsack {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let mut sum: u16 = 0;
+        let mut sum: usize = 0;
 
         for item in self.items.clone() {
             sum += item.value;
@@ -123,6 +124,125 @@ fn greedy(k: &Knapsack) -> Knapsack {
     stolen
 }
 
+fn exhaustive(k: &Knapsack) -> Knapsack {
+    // I'm going to try and do some fancy stuff with bits
+    let (mut max, mut max_weight, mut max_value) = (0, 0, 0);
+
+    // Get the total of all possible knapsack states
+    let num_states = 2_usize.pow(k.items.len() as u32);
+
+    let (mut weight, mut value) = (0, 0);
+
+    // Iterate through the all numbers from 0 to num_states,
+    // use the bit values as the knapsack configuration
+    for i in (0..num_states).progress() {
+        let mut temp = i;
+        
+        (weight, value) = (0, 0);
+            
+        while temp != 0 {
+            // Each 1 is an item in the knapsack
+            let index = temp.trailing_zeros() as usize;
+            let item = &k.items[index];
+
+            // Add the item if possible
+            if weight + item.weight <= k.weight {
+                weight += item.weight;
+                value += item.value;
+            }
+
+            // Set the least significant bit to 0 to find the next 1
+            temp ^= 2_usize.pow(index as u32);
+        }
+
+        // If we've found a new max
+        if value > max_value {
+            (max, max_weight, max_value) = (i, weight, value);
+        }
+    }
+
+    let mut knap = Knapsack {
+        num_items: max.count_ones() as usize,
+        weight: max_weight,
+        items: vec!()
+    };
+
+    // Add our items to the knapsack
+    while max != 0 {
+        let index = max.trailing_zeros() as usize;
+        knap.add(&k.items[index]);
+        max ^= 2_usize.pow(index as u32);
+    }
+
+    knap
+}
+
+fn exhaustive_pruning(k: &Knapsack) -> Knapsack {
+    let b = ProgressBar::new(2_u64.pow(k.items.len() as u32));
+
+    let (mut m, w, _) = recur(&k, (0, 0, 0), 0, k.items.len(), b.clone());
+
+    let mut knap = Knapsack {
+        num_items: m.count_ones() as usize,
+        weight: w,
+        items: vec!()
+    };
+
+    // Add our items to the knapsack
+    while m != 0 {
+        let index = m.trailing_zeros() as usize;
+        knap.add(&k.items[index]);
+        m ^= 2_usize.pow(index as u32);
+    }
+
+    knap
+}
+
+// m: current max
+// w: weight of max
+// v: value of max
+// c: current configuration to test
+// n: number of items available to steal
+fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n: usize, b: ProgressBar) -> (usize, usize, usize) {
+
+    println!("Trying configuration {:#018b}", c);
+
+    let mut temp = c;
+    let mut weight = 0;
+    let mut value = 0;
+
+    while temp != 0 {
+        // Each 1 is an item in the knapsack
+        let index = temp.trailing_zeros() as usize;
+        let item = &k.items[index];
+
+        // Add the item if possible
+        weight += item.weight;
+        value += item.value;
+
+        // Set the least significant bit to 0 to find the next 1
+        temp ^= 2_usize.pow(index as u32);
+    }
+
+    b.inc(1);
+
+    if weight <= k.weight {
+        if value > v {
+            (m, w, v) = (c, weight, value);
+        } 
+            
+        let mut num: usize = 1;
+
+        for _ in 0..usize::BITS {
+            (m, w, v) = recur(k, (m, w, v), c ^ num, n, b.clone());
+            num = num << 1;
+        }
+    }
+
+    return (m, w, v);
+
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     
@@ -155,4 +275,10 @@ fn main() {
     // Sort by descending weight:value ratio
     items.items.sort_by_key(|x| x.weight / x.value);
     println!("{}", greedy(&items));
+
+    //println!("\nExhaustive search");
+    //println!("{}", exhaustive(&items));
+
+    println!("\nExhaustive search with pruning");
+    println!("{}", exhaustive_pruning(&items));
 }
