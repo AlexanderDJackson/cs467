@@ -1,9 +1,8 @@
-use std::env;
 use std::fmt;
 use clap::Parser;
 use std::fs::File;
 use std::cmp::Reverse;
-use indicatif::{ProgressBar, ProgressIterator};
+use bitvec::prelude::*;
 use std::io::{self, prelude::*, BufReader};
 
 struct Knapsack {
@@ -24,7 +23,7 @@ struct Item {
 #[command(author, version, about, long_about = None)]
 struct Args {
     /// Name of the file with the knapsack items
-    #[arg(short, long, value_name = "FILE")]
+    #[arg(value_name = "FILE")]
     file: String,
 
     /// Three greedy algorithms: fast & worst
@@ -37,7 +36,7 @@ struct Args {
 
     /// Exhaustive search algorithm with pruning: faster & best
     #[arg(short, long)]
-    better_exhaustive: bool
+    better_exhaustive: bool,
 }
 
 impl Knapsack {
@@ -61,7 +60,13 @@ impl fmt::Display for Knapsack {
             sum += item.value;
         }
 
-        match write!(f, "{} items, weight {} lbs, ${} total", self.num_items, self.weight, sum) {
+        match write!(
+            f,
+            "{} items, weight {} lbs, ${} total",
+            self.num_items,
+            self.weight,
+            sum)
+        {
             Ok(()) => {},
             Err(e) => {
                 eprint!("Failed to print: {}", e);
@@ -129,6 +134,17 @@ fn parse_file(file_name: String) -> io::Result<Knapsack> {
     Ok(items)
 }
 
+fn increment(b: &mut BitVec::<u8>) {
+    for bit in b.iter_mut().rev() {
+        if !bit.clone() {
+            bit.commit(true);
+            break;
+        } else {
+            bit.commit(false);
+        }
+    }
+}
+
 fn greedy(k: &Knapsack) -> Knapsack {
     let mut stolen = Knapsack {
         num_items: 0,
@@ -148,127 +164,85 @@ fn greedy(k: &Knapsack) -> Knapsack {
 
 fn exhaustive(k: &Knapsack) -> Knapsack {
     // I'm going to try and do some fancy stuff with bits
-    let (mut max, mut max_weight, mut max_value) = (0, 0, 0);
+    // 15FEB23: Apparently not being able to handle more than 64 items
+    //          is problematic :(
+    let (mut max, mut max_weight, mut max_value) = (bitvec![u8, Lsb0; 0; k.items.len()], 0, 0);
 
-    // Get the total of all possible knapsack states
-    let num_states = 2_usize.pow(k.items.len() as u32);
-
-    let (mut weight, mut value) = (0, 0);
-
-    // Iterate through the all numbers from 0 to num_states,
-    // use the bit values as the knapsack configuration
-    for i in (0..num_states).progress() {
-        let mut temp = i;
-        
-        (weight, value) = (0, 0);
+    let mut bits = BitVec::with_capacity(k.items.len());
+    bits.resize(k.items.len(), false);
             
-        while temp != 0 {
-            // Each 1 is an item in the knapsack
-            let index = temp.trailing_zeros() as usize;
-            let item = &k.items[index];
+    /* Iterate through the all numbers from 0 to num_states,
+       use the bit values as the knapsack configuration
+       15FEB23: I am now using the handy bitvec crate,
+                which is a fancy wrapper around a vector
+                of bits/bools, as my previous implementation
+                used a usize, which is a 64 bit unsigned
+                integer on 64 bit systems, and was thusly
+                limited to knapsacks of 64 or fewer items.
+    */
+    while bits.contains(bits![0]) {
+        // Add the items
+        let (weight, value) = bits.iter_ones()
+            .map(|i| (k.items[i].weight, k.items[i].value))
+            .fold((0, 0), |(a, b), (w, v)| (a + w, b + v));
 
-            // Add the item if possible
-            if weight + item.weight <= k.weight {
-                weight += item.weight;
-                value += item.value;
-            }
-
-            // Set the least significant bit to 0 to find the next 1
-            temp ^= 2_usize.pow(index as u32);
+        // If we've found a new max within the max weight
+        if weight <= k.weight && value > max_value {
+            (max, max_weight, max_value) = (bits.clone(), weight, value);
         }
 
-        // If we've found a new max
-        if value > max_value {
-            (max, max_weight, max_value) = (i, weight, value);
-        }
+        increment(&mut bits);
     }
 
-    let mut knap = Knapsack {
-        num_items: max.count_ones() as usize,
+    Knapsack {
+        num_items: max.iter_ones().count() as usize,
         weight: max_weight,
-        items: vec!()
-    };
-
-    // Add our items to the knapsack
-    while max != 0 {
-        let index = max.trailing_zeros() as usize;
-        knap.add(&k.items[index]);
-        max ^= 2_usize.pow(index as u32);
+        items: max.iter_ones().map(|i| k.items[i].clone()).collect()
     }
-
-    knap
 }
 
 fn exhaustive_pruning(k: &Knapsack) -> Knapsack {
-    let b = ProgressBar::new(2_u64.pow(k.items.len() as u32));
+    let mut bits = BitVec::with_capacity(k.items.len());
+    bits.resize(k.items.len(), false);
 
-    let (mut m, w, _) = recur(&k, (0, 0, 0), 0, k.items.len(), -1, b.clone());
+    let (m, w, _) = recur(&k, (bits.clone(), 0, 0), bits, -1);
 
-    let mut knap = Knapsack {
+    Knapsack {
         num_items: m.count_ones() as usize,
         weight: w,
-        items: vec!()
-    };
-
-    // Add our items to the knapsack
-    while m != 0 {
-        let index = m.trailing_zeros() as usize;
-        knap.add(&k.items[index]);
-        m ^= 2_usize.pow(index as u32);
+        items: m.iter_ones().map(|i| k.items[i].clone()).collect()
     }
 
-    knap
 }
 
 // m: current max
 // w: weight of max
 // v: value of max
-// c: current configuration to test
 // n: number of items available to steal
 // i: the bit that was just flipped,
 //    we need to know this as we shouldn't
 //    flip any bits to the right of this one,
 //    otherwise we'll overflow the stack
-// b: the progress bar
-fn recur(k: &Knapsack, (mut m, mut w, mut v): (usize, usize, usize), c: usize, n: usize, i: i8, b: ProgressBar) -> (usize, usize, usize) {
-    let mut temp = c;
-    let mut weight = 0;
-    let mut value = 0;
-
-    while temp != 0 {
-        // Each 1 is an item in the knapsack
-        let index = temp.trailing_zeros() as usize;
-        let item = &k.items[index];
-
-        // Add the item if possible
-        weight += item.weight;
-        value += item.value;
-
-        // Set the least significant bit to 0 to find the next 1
-        temp ^= 2_usize.pow(index as u32);
-    }
+fn recur<'a>(k: &Knapsack, (mut m, mut w, mut v): (BitVec::<u8>, usize, usize), mut b: BitVec::<u8>, i: isize) -> (BitVec::<u8>, usize, usize) {
+    println!("{}", b);
+    let (weight, value) = b.iter_ones()
+        .map(|i| (k.items[i].weight, k.items[i].value))
+        .fold((0, 0), |(a, b), (w, v)| (a + w, b + v));
 
     // Recur if under weight limit
     if weight <= k.weight {
         if value > v {
-            (m, w, v) = (c, weight, value);
+            (m, w, v) = (b.clone(), weight, value);
         } 
             
-        b.inc(1);
-
-        for x in ((i + 1) as u32)..(n as u32) {
-            (m, w, v) = recur(k, (m, w, v), c ^ (1usize << x), n, x as i8, b.clone());
+        for x in ((i + 1) as usize)..b.len() {
+            if let Some(mut bit) = b.get_mut(x) { *bit ^= true; }
+            (m, w, v) = recur(k, (m, w, v), b.clone(), x as isize);
         }
-    // We're over the weight limit,
-    // we can return and not recur,
-    // thereby pruning this branch
-    } else {
-        // increment progress bar by number of states we pruned
-        b.inc(2u64.pow((n - (i + 1) as usize) as u32));
     }
-
+    // We're over the weight limit, we can return and not recur,
+    // thereby pruning this branch, or maybe we found a new max
     return (m, w, v);
-
 }
 
 fn main() {
@@ -299,15 +273,19 @@ fn main() {
         // Sort by descending weight:value ratio
         items.items.sort_by_key(|x| x.weight / x.value);
         println!("{}", greedy(&items));
-    } else if args.exhaustive {
-        println!("\nExhaustive search");
-        println!("{}", exhaustive(&items));
-    } else {
-        if !args.better_exhaustive {
-            eprintln!("No method found, defaulting to exhaustive with pruning");
-        }
+    }
 
+    if args.better_exhaustive {
         println!("\nExhaustive search with pruning");
         println!("{}", exhaustive_pruning(&items));
+    }
+
+    if args.exhaustive {
+        println!("\nExhaustive search");
+        println!("{}", exhaustive(&items));
+    }
+
+    if !args.greedy && !args.exhaustive && !args.better_exhaustive {
+        eprintln!("No method found, defaulting to exhaustive with pruning");
     }
 }
