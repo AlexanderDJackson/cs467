@@ -10,7 +10,7 @@ If you have the rust toolchain installed, you should be able to navigate to this
 cargo run -- -h
 ```
 
-This will show you the help page for the various options that are supported. You can also build the project for better performance with this command:
+This will show you the help page for the various options that are supported. The `--` is important, it signifies that you're no longer supplying arguments for `cargo`, but for the program `cargo` is running. You can also build the project for better performance and not worry about the `--` with this command:
 
 ```
 cargo build --release
