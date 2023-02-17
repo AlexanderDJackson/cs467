@@ -1,1 +1,5 @@
 testcases/final/test1.kp,exhaustive,8824,136,50,9
+testcases/final/test10.kp,exhaustive,1200000,160,15,6
+testcases/final/test100.kp,exhaustive,1200000,255,200,16
+testcases/final/test11.kp,exhaustive,1200000,165,25,6
+testcases/final/test12.kp,exhaustive,223,771,100,10
