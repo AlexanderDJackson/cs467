@@ -480,7 +480,6 @@ fn main() {
         if args.better_exhaustive {
             let mut k: Knapsack = Knapsack { num_items: 0, weight: 0, items: Vec::<Item>::new() };
 
-            // Sort by ascending weight
             let bench = benchmarking::measure_function(|m| {
                 m.measure(|| {
                     k = exhaustive_pruning(&items)
@@ -496,7 +495,6 @@ fn main() {
         if args.exhaustive {
             let mut k: Knapsack = Knapsack { num_items: 0, weight: 0, items: Vec::<Item>::new() };
 
-            // Sort by ascending weight
             let bench = benchmarking::measure_function(|m| {
                 m.measure(|| {
                     k = exhaustive(&items)
@@ -512,7 +510,6 @@ fn main() {
         if args.climb {
             let mut k: Knapsack = Knapsack { num_items: 0, weight: 0, items: Vec::<Item>::new() };
 
-            // Sort by ascending weight
             let bench = benchmarking::measure_function(|m| {
                 m.measure(|| {
                     k = hill_climb(&items)
