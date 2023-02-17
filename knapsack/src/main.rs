@@ -413,7 +413,7 @@ fn hill_climb(k: &Knapsack) -> Knapsack {
 // k: the resulting knapsack to print
 fn output(a: bool, f: &String, m: &String, t: Option<Duration>, k: &Knapsack) {
     if a {
-        println!("{},{},{:?},{},{},{}", f, m, t.unwrap(), k.items.iter().fold(0, |acc, i| acc + i.value), k.weight, k.num_items);
+        println!("{},{},{:?},{},{},{}", f, m, t.unwrap().as_millis(), k.items.iter().fold(0, |acc, i| acc + i.value), k.weight, k.num_items);
     } else {
         println!("{k}\n");
     }
