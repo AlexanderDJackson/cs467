@@ -22,7 +22,7 @@ struct Item {
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    /// Name of the files with the knapsack items
+    /// Names of the files with the knapsack items
     #[arg(value_name = "FILE")]
     files: Vec<String>,
 
@@ -42,9 +42,13 @@ struct Args {
     #[arg(short, long)]
     climb: bool,
 
-    /// Benchmarking mode: prints weight, value, number of items in solution set, and time to run
+    /// Benchmarking mode: prints knapsack filename, time to run, weight, value, number of items in solution set
     #[arg(short, long)]
-    time: bool
+    time: bool,
+
+    /// Time limit: apply a time limit in seconds to the algorithm, 0 = none
+    #[arg(short, long, value_name = "SECONDS", default_value_t = 0)]
+    limit: u64
 }
 
 impl Knapsack {
@@ -177,7 +181,7 @@ fn greedy(k: &Knapsack) -> Knapsack {
     stolen
 }
 
-fn exhaustive(k: &Knapsack) -> Knapsack {
+fn exhaustive(k: &Knapsack, d: Option<Duration>) -> Knapsack {
     // I'm going to try and do some fancy stuff with bits
     // 15FEB23: Apparently not being able to handle more than 64 items
     //          is problematic :(
@@ -210,7 +214,9 @@ fn exhaustive(k: &Knapsack) -> Knapsack {
 
         increment(&mut bits);
 
-        if before.elapsed() >= Duration::from_secs(1200) { break; }
+        if let Some(limit) = d {
+            if before.elapsed() >= limit { break; }
+        }
     }
 
     Knapsack {
@@ -221,11 +227,20 @@ fn exhaustive(k: &Knapsack) -> Knapsack {
 }
 
 // Handler function for the recursive function
-fn exhaustive_pruning(k: &Knapsack) -> Knapsack {
+fn exhaustive_pruning(k: &Knapsack, d: Option<Duration>) -> Knapsack {
     let mut bits = BitVec::with_capacity(k.items.len());
     bits.resize(k.items.len(), false);
 
-    let (m, w, _) = recur(&k, (bits.clone(), 0, 0), bits, -1);
+    let (m, w, _, _) = recur(
+        &k,
+        (bits.clone(), 0, 0, true),
+        bits,
+        -1,
+        match d {
+            None => { None },
+            Some(d) => { Some((Instant::now(), d)) }
+        }
+    );
 
     Knapsack {
         num_items: m.count_ones() as usize,
@@ -238,12 +253,25 @@ fn exhaustive_pruning(k: &Knapsack) -> Knapsack {
 // m: current max
 // w: weight of max
 // v: value of max
+// cont: the flag to end searching if we've hit the time limit
 // n: number of items available to steal
 // i: the bit that was just flipped,
 //    we need to know this as we shouldn't
 //    flip any bits to the right of this one,
 //    otherwise we'll overflow the stack
-fn recur(k: &Knapsack, (mut m, mut w, mut v): (BitVec::<u8>, usize, usize), b: BitVec::<u8>, i: isize) -> (BitVec::<u8>, usize, usize) {
+fn recur(
+    k: &Knapsack,
+    (mut m, mut w, mut v, mut cont): (BitVec::<u8>, usize, usize, bool),
+    b: BitVec::<u8>,
+    i: isize,
+    d: Option<(Instant, Duration)>
+) -> (BitVec::<u8>, usize, usize, bool) {
+
+    if let Some((time, limit)) = d {
+        if time.elapsed() >= limit {
+            return (m, w, v, false);
+        }
+    }
     let (weight, value) = b.iter_ones()
         .map(|i| (k.items[i].weight, k.items[i].value))
         .fold((0, 0), |(a, b), (w, v)| (a + w, b + v));
@@ -259,13 +287,17 @@ fn recur(k: &Knapsack, (mut m, mut w, mut v): (BitVec::<u8>, usize, usize), b: B
             let mut clone = b.clone();
             if let Some(mut bit) = clone.get_mut(x) { *bit ^= true; }
 
-            (m, w, v) = recur(k, (m, w, v), clone, x as isize);
+            (m, w, v, cont) = recur(k, (m, w, v, cont), clone, x as isize, d);
+
+            if !cont {
+                break;
+            }
         }
     }
 
     // We're over the weight limit, we can return and not recur,
     // thereby pruning this branch, or maybe we found a new max
-    return (m, w, v);
+    return (m, w, v, cont);
 }
 
 fn get_weight(bits: &BitVec<u8>, k: &Knapsack) -> usize {
@@ -482,7 +514,13 @@ fn main() {
 
             let bench = benchmarking::measure_function(|m| {
                 m.measure(|| {
-                    k = exhaustive_pruning(&items)
+                    k = exhaustive_pruning(
+                        &items,
+                        match args.limit {
+                            0 => { None },
+                            n => { Some(Duration::from_secs(n)) }
+                        }
+                    )
                 });
             }).unwrap();
 
@@ -497,7 +535,13 @@ fn main() {
 
             let bench = benchmarking::measure_function(|m| {
                 m.measure(|| {
-                    k = exhaustive(&items)
+                    k = exhaustive(
+                        &items,
+                        match args.limit {
+                            0 => { None },
+                            n => { Some(Duration::from_secs(n)) }
+                        }
+                    )
                 });
             }).unwrap();
 
