@@ -13,3 +13,8 @@ test30.kp,exhaustive_pruning,1530,265,50,11
 test40.kp,exhaustive_pruning,33526,312,50,12
 test9.kp,exhaustive_pruning,1200000,271,140,18
 test10.kp,exhaustive_pruning,30,172,15,7
+test50.kp,exhaustive_pruning,901702,382,50,14
+test60.kp,exhaustive_pruning,1200000,401,50,14
+test75.kp,exhaustive_pruning,1200000,395,50,14
+test90.kp,exhaustive_pruning,1200000,385,50,14
+test11.kp,exhaustive_pruning,234942,273,25,11
