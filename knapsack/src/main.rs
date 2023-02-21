@@ -42,7 +42,7 @@ struct Args {
     #[arg(short, long)]
     climb: bool,
 
-    /// Benchmarking mode: prints knapsack filename, time to run, weight, value, number of items in solution set
+    /// Benchmarking mode: prints knapsack filename, time to run, value, weight, number of items in solution set
     #[arg(short, long)]
     time: bool,
 
@@ -269,6 +269,18 @@ fn recur(
 
     if let Some((time, limit)) = d {
         if time.elapsed() >= limit {
+            output(
+                true,
+                &String::from("filename"),
+                &String::from("better_exhaustive"), 
+                Some(time.elapsed()),
+                &Knapsack {
+                    num_items: m.count_ones() as usize,
+                    weight: w,
+                    items: m.iter_ones().map(|i| k.items[i].clone()).collect()
+                }
+            );
+            panic!("guh");
             return (m, w, v, false);
         }
     }
@@ -290,7 +302,7 @@ fn recur(
             (m, w, v, cont) = recur(k, (m, w, v, cont), clone, x as isize, d);
 
             if !cont {
-                break;
+                return (m, w, v, cont);
             }
         }
     }
