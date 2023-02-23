@@ -154,6 +154,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "genetic-algorithms"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "log",
+ "rand",
+ "simple_logger",
+]
+
+[[package]]
 name = "getrandom"
 version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"

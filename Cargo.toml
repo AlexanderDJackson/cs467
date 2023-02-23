@@ -1,2 +1,2 @@
 [workspace]
-members = ["knapsack", "genetic"]
+members = ["knapsack", "genetic-algorithms", "genetic-algorithms/src/genetic"]
