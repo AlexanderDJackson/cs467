@@ -1,7 +1,7 @@
 use std::fmt;
 use clap::{Parser, ValueEnum};
-use rand::{Rng, seq::IteratorRandom, distributions::{Distribution, WeightedIndex}};
-use log::{trace, debug, info, warn, error, LevelFilter};
+use rand::{Rng, seq::{IteratorRandom, SliceRandom}, distributions::{Distribution, WeightedIndex}};
+use log::{trace, debug};
 
 #[derive(Copy, Clone, Debug, ValueEnum)]
 pub enum SexMethod {
@@ -59,8 +59,8 @@ pub struct Args {
     pub alphabet: String,
 
     /// The file needed for whatever problem
-    #[arg(short, long)]
-    pub file: String,
+    #[arg(long)]
+    pub file: Option<String>,
 
     /// The initial population of genitors
     #[arg(short, long, num_args = 1..)]
@@ -75,8 +75,12 @@ pub struct Args {
     pub mutation_rate: f64,
 
     /// The number of genitors in each population
-    #[arg(short, long, default_value_t = 10)]
+    #[arg(short, long, default_value_t = 50)]
     pub population: usize,
+
+    /// The number of genotypes in each intermediate population
+    #[arg(short, long, default_value_t = 100)]
+    pub intermediate_population: usize,
 
     /// The problem for which to generate solutions
     #[arg(short = 'r', long, value_enum, default_value_t = Problem::Knapsack)]
@@ -89,6 +93,18 @@ pub struct Args {
     /// The method of selection used to produce genitors from a population
     #[arg(short, long, value_enum, default_value_t = SelectionMethod::Equal)]
     pub selection_method: SelectionMethod,
+
+    /// The maximum number of generations 
+    #[arg(short = 'e', long, default_value_t = 100)]
+    pub max_generations: usize,
+
+    /// Chance of skipping reproduction and adding genitors to next generation
+    #[arg(short = 'k', long, default_value_t = 0.1)]
+    pub skip: f64,
+
+    /// Force mutation if one occurs
+    #[arg(short = 'f', long, default_value_t = false)]
+    pub force_mutation: bool,
 }
 
 pub fn mutate(mut child: (String, String), mutation_rate: f64, alphabet: Vec<char>, force: bool) -> (String, String) {
@@ -156,6 +172,7 @@ pub fn reproduce(
     force: bool) -> (String, String)
 {
     let mut rng = rand::thread_rng();
+    let length = parent.0.len();
 
     if rng.gen_bool(skip) {
         debug!("Returning parents: {}, {}", parent.0, parent.1);
@@ -163,14 +180,16 @@ pub fn reproduce(
     }
 
     let mut child = (String::new(), String::new());
-    let num_points = match sex_method {
-        SexMethod::One => { (0..parent.0.len()).choose_multiple(&mut rng, 1) },
-        SexMethod::Two => { (0..parent.0.len()).choose_multiple(&mut rng, 2) },
+    let mut num_points = match sex_method {
+        SexMethod::One => { (1..parent.0.len()).choose_multiple(&mut rng, 1) },
+        SexMethod::Two => { (1..parent.0.len()).choose_multiple(&mut rng, 2) },
         SexMethod::Uniform => {
-            let num = rng.gen_range(0..parent.0.len());
-            (0..parent.0.len()).choose_multiple(&mut rng, num)
+            let num = rng.gen_range(3..parent.0.len());
+            (1..parent.0.len()).choose_multiple(&mut rng, num)
         }
     };
+
+    num_points.sort();
 
     trace!("Crossover points: {:?}", num_points);
 
@@ -194,8 +213,20 @@ pub fn reproduce(
         trace!("Child 0: {}", child.0);
         trace!("Child 1: {}", child.1);
 
-        last += i;
+        last = i;
+        let _ = &p.next();
     }
+
+    let temp = &p.next().unwrap();
+    trace!("Taking {} alleles from parent {} for child 0: {}", length - last, temp, temp[last..length].to_string());
+    child.0 += &temp[last..length];
+
+    let temp = &p.next().unwrap();
+    trace!("Taking {} alleles from parent {} for child 0: {}", length - last, temp, temp[last..length].to_string());
+    child.1 += &temp[last..length];
+
+    trace!("Child 0: {}", child.0);
+    trace!("Child 1: {}", child.1);
 
     if mutation_rate > 0.0 {
         child = mutate(child, mutation_rate, alphabet, force);
@@ -223,36 +254,23 @@ pub fn generate_genitors(population: usize, length: usize, alphabet: Vec<char>) 
     v
 }
 
-pub fn generate_population(
+pub fn select_genitors(
     fitness: impl Fn(String) -> f64,
-    genitors: Option<Vec<String>>,
-    population: usize, 
-    length: usize,
-    alphabet: Vec<char>,
+    genitors: Vec<String>,
+    population: usize,
     selection_method: SelectionMethod
 ) -> Vec<String> {
     let mut rng = rand::thread_rng();
-    let mut g: Vec<(String, f64)> = match genitors {
-        Some(mut g) => {
-            if g.len() < population {
-                g.append(&mut generate_genitors(population - g.len(), length, alphabet));
-            }
-
-            g
-        },
-        None => {
-            generate_genitors(population, length, alphabet)
-        }
-    }.iter()
+    let mut pool = Vec::<String>::new();
+    let mut g: Vec<(String, f64)> = genitors
+        .iter()
         .map(|genotype| (genotype.to_string(), fitness(genotype.to_string())))
         .collect();
-    
+
     // prioritize the best performers
     g.sort_by(|(_, a), (_, b)| a.partial_cmp(b).unwrap());
 
     trace!("(Genitors, fitness) = {:?}", g);
-
-    let mut pool = Vec::<String>::new();
 
     match selection_method {
         SelectionMethod::Equal => {
@@ -264,7 +282,7 @@ pub fn generate_population(
                 .fold(0.0, |total, (_, f)| total + f) / g.len() as f64; 
             trace!("Average fitness = {avg_fit}");
 
-            for (genotype, fitness) in g {
+            for (genotype, fitness) in &g {
                 let mut f = fitness / avg_fit;
 
                 while pool.len() < population && f > 0.0 {
@@ -283,7 +301,13 @@ pub fn generate_population(
                 }
             }
 
-            // TODO: What if the pool isn't full, and we're done iterating?
+            let mut genitor = g.iter().cycle();
+
+            while pool.len() < population {
+                if let Some((genotype, _)) = genitor.next() {
+                    pool.push(genotype.to_string());
+                }
+            }
         },
         SelectionMethod::Replacement => {
             let avg_fit = g.iter()
@@ -292,13 +316,7 @@ pub fn generate_population(
             trace!("Average fitness = {avg_fit}");
 
             // add the genitors randomly proportionally to their fitness
-            let dist = WeightedIndex::new(g.iter().map(|(_, fitness)| {
-                if fitness > &0.0 { 
-                    fitness 
-                } else {
-                    &0.0
-                }
-            })).unwrap();
+            let dist = WeightedIndex::new(g.iter().map(|(_, fitness)| fitness.max(0.0))).expect("Unable to sample genitor population");
 
             while pool.len() < population {
                 let temp = g[dist.sample(&mut rng)].0.to_string();
@@ -309,5 +327,54 @@ pub fn generate_population(
     }
 
     trace!("pool = {:?}", pool);
-    pool
+    pool   
+}
+
+pub fn generate_generation(
+    fitness: impl Fn(String) -> f64,
+    genitors: Option<Vec<String>>,
+    population: usize, 
+    intermediate_population: usize,
+    length: usize,
+    alphabet: Vec<char>,
+    selection_method: SelectionMethod,
+    sex_method: SexMethod,
+    mutation_rate: f64,
+    skip: f64,
+    force: bool
+) -> Vec<String> {
+    let mut rng = rand::thread_rng();
+    let g: Vec<String> = match genitors {
+        Some(mut g) => {
+            if g.len() < population {
+                g.append(&mut generate_genitors(population - g.len(), length, alphabet.clone()));
+            }
+
+            g
+        },
+        None => {
+            generate_genitors(population, length, alphabet.clone())
+        }
+    };
+
+    
+    let pool = select_genitors(fitness, g, intermediate_population, selection_method);
+
+    let mut next = Vec::<String>::new();
+
+    while next.len() < population {
+        let temp: Vec<&String> = pool.choose_multiple(&mut rng, 2).collect();
+        let parent = (temp[0].to_string(), temp[1].to_string());
+        let child = reproduce(parent, sex_method, alphabet.clone(), mutation_rate, skip, force);
+
+        trace!("{} made it into next generation", child.0);
+        next.push(child.0);
+
+        if next.len() > population {
+            trace!("{} made it into next generation", child.1);
+            next.push(child.1);
+        }
+    }
+
+    next
 }

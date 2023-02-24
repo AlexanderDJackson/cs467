@@ -158,6 +158,7 @@ name = "genetic-algorithms"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "genetic",
  "log",
  "rand",
  "simple_logger",

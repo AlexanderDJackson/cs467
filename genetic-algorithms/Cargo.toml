@@ -2,11 +2,10 @@
 name = "genetic-algorithms"
 version = "0.1.0"
 edition = "2021"
-about = "Genetic Algorithm to Generate Optimal Solutions"
-long_about = "This project uses command-line configurable genetic algorithms to generate optimal solutions given an executable that takes in solutions and returns a fitness rating"
 
 [dependencies]
 log = "0.4"
 rand = "0.8.5"
 simple_logger = "4.0.0"
 clap = { version = "4.1.6", features = ["derive"] }
+genetic = { path = "src/genetic/" }
