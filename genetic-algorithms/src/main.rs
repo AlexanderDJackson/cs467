@@ -1,4 +1,4 @@
-use crate::problems::knapsack;
+use crate::problems::knapsack::*;
 use clap::Parser;
 use genetic::*;
 use simple_logger:: SimpleLogger;
@@ -30,7 +30,7 @@ fn main() {
                 None => { panic!("Failed to parse {}", file_name); }
             };
                 
-            fitness = move |string: String| -> f64 { knapsack::fitness(items.clone(), max_weight, string) };
+            fitness = move |string: &String| -> (usize, usize, f64) { knapsack::fitness(items.clone(), max_weight, string) };
         }
     }
     
@@ -52,5 +52,5 @@ fn main() {
         );
     }
 
-    println!("Best Solution: {}", recent[0]);
+    println!("Best Solution: {} (fitness = {})", recent[0], fitness(&recent[0]).2);
 }

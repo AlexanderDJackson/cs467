@@ -109,6 +109,7 @@ pub struct Args {
 
 pub fn mutate(mut child: (String, String), mutation_rate: f64, alphabet: Vec<char>, force: bool) -> (String, String) {
     let mut rng = rand::thread_rng();
+    let old = child.clone();
 
     trace!("Force mutation: {force}");
 
@@ -134,7 +135,6 @@ pub fn mutate(mut child: (String, String), mutation_rate: f64, alphabet: Vec<cha
         }
     }
 
-    debug!("Mutated child 0: {}", child.0);
     trace!("Testing Child 1 for mutations");
     for i in 0..child.1.len() {
         if rng.gen_bool(mutation_rate) {
@@ -157,8 +157,13 @@ pub fn mutate(mut child: (String, String), mutation_rate: f64, alphabet: Vec<cha
         }
     }
 
-    debug!("Mutated child 1: {}", child.1);
-    trace!("Mutated children: {}, {}", child.0, child.1);
+    if old.0 != child.0 {
+        debug!("Mutated child 0 from {} to {}", old.0, child.0);
+    }
+
+    if old.1 != child.1 {
+        debug!("Mutated child 1 from {} to {}", old.1, child.1);
+    }
 
     child
 }
@@ -171,6 +176,10 @@ pub fn reproduce(
     skip: f64,
     force: bool) -> (String, String)
 {
+    if parent.0.len() != parent.1.len() {
+        panic!("Genitor lengths are not equal: {} != {}", parent.0, parent.1);
+    }
+
     let mut rng = rand::thread_rng();
     let length = parent.0.len();
 
@@ -236,26 +245,34 @@ pub fn reproduce(
     child
 }
 
-pub fn generate_genitors(population: usize, length: usize, alphabet: Vec<char>) -> Vec<String> {
+pub fn generate_genitors(
+    fitness: impl Fn(&String) -> (usize, usize, f64),
+    population: usize,
+    length: usize,
+    alphabet: Vec<char>
+) -> Vec<String> {
     let mut v = Vec::<String>::new();
     let mut rng = rand::thread_rng();
 
     trace!("Creating genitors");
-    for _ in 0..population {
+    while v.len() < population {
         let mut genitor = String::new();
         for _ in 0..length {
             genitor.push(alphabet[rng.gen_range(0..alphabet.len())]);
         }
 
-        trace!("Created genitor: {genitor}");
-        v.push(genitor);
+        let (weight, value, fit) = fitness(&genitor);
+        if fit >= 0.0 {
+            debug!("Created genitor: {genitor} (weight = {weight}, value = {value}, fitness = {fit})", );
+            v.push(genitor);
+        }
     }
 
     v
 }
 
 pub fn select_genitors(
-    fitness: impl Fn(String) -> f64,
+    fitness: impl Fn(&String) -> (usize, usize, f64),
     genitors: Vec<String>,
     population: usize,
     selection_method: SelectionMethod
@@ -264,7 +281,7 @@ pub fn select_genitors(
     let mut pool = Vec::<String>::new();
     let mut g: Vec<(String, f64)> = genitors
         .iter()
-        .map(|genotype| (genotype.to_string(), fitness(genotype.to_string())))
+        .map(|genotype| (genotype.to_string(), fitness(&genotype).2))
         .collect();
 
     // prioritize the best performers
@@ -331,7 +348,7 @@ pub fn select_genitors(
 }
 
 pub fn generate_generation(
-    fitness: impl Fn(String) -> f64,
+    fitness: impl Fn(&String) -> (usize, usize, f64),
     genitors: Option<Vec<String>>,
     population: usize, 
     intermediate_population: usize,
@@ -347,16 +364,19 @@ pub fn generate_generation(
     let g: Vec<String> = match genitors {
         Some(mut g) => {
             if g.len() < population {
-                g.append(&mut generate_genitors(population - g.len(), length, alphabet.clone()));
+                g.append(&mut generate_genitors(&fitness, population - g.len(), length, alphabet.clone()));
             }
 
             g
         },
         None => {
-            generate_genitors(population, length, alphabet.clone())
+            generate_genitors(&fitness, population, length, alphabet.clone())
         }
     };
 
+    if !g.iter().fold(true, |good, genotype| good && genotype.len() == length ) {
+        panic!("Genitor genotype is incorrect length!");
+    }
     
     let pool = select_genitors(fitness, g, intermediate_population, selection_method);
 
