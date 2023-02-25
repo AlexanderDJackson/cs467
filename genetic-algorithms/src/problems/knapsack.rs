@@ -4,20 +4,6 @@ pub mod knapsack {
     use std::io::{BufReader, BufRead};
     use log::{trace, debug, error};
 
-    pub fn average_fitness(items: Vec<(usize, usize)>, max_weight: usize) -> f64 {
-        let (weight, value) = items                                   // get the vector of weight value pairs
-            .iter()                             // get an iterator from that vector
-            .fold(                              // sum together the weights and values
-                (0, 0),                         // the initial values
-                |(weight, value), (w, v)|       // for each iterator, take in:
-                                                // the previous closure's return value as weight and value,
-                                                // and w and v from the current iterator,
-                (weight + w, value + v)         // and add those to the current weight and value sums
-            );
-
-        if weight > max_weight { -1.0 } else { (value as f64 / max_weight as f64) / items.len() as f64 }
-    }
-
     pub fn fitness(items: Vec<(usize, usize)>, max_weight: usize, string: &String) -> (usize, usize, f64) {
         let (weight, value) = items
             .iter()

@@ -11,7 +11,7 @@ mod problems {
 fn main() {
     // Create logger that defaults to info level
     // Run with env variable RUST_LOG=<desired_level> to change from default
-    match SimpleLogger::new().with_level(LevelFilter::Info).env().init() {
+    match SimpleLogger::new().with_level(LevelFilter::Warn).env().init() {
         Ok(logger) => { logger },
         Err(e) => { eprintln!("Unable to intialize logger: {}", e); }
     }
@@ -35,8 +35,14 @@ fn main() {
     }
     
     let mut recent = args.genitors;
+    let mut best = generate_genitors(
+        &fitness,
+        1,
+        args.length,
+        args.alphabet.chars().collect()
+    )[0].to_string();
 
-    for _ in 0..args.max_generations {
+    for i in 0..args.max_generations {
         recent = generate_generation(
             &fitness,
             if recent.len() > 0 { Some(recent) } else { None },
@@ -48,9 +54,15 @@ fn main() {
             args.sex_method,
             args.mutation_rate,
             args.skip,
-            args.force_mutation
+            args.force_mutation,
+            i
         );
+
+        if fitness(&recent[0]).2 > fitness(&best).2 {
+            best = recent[0].to_string();
+        }
     }
 
-    println!("Best Solution: {} (fitness = {})", recent[0], fitness(&recent[0]).2);
+    let (w, v, f) = fitness(&best);
+    println!("Best Solution: {} (weight = {w}, value = {v}, fitness = {f})", best);
 }

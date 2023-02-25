@@ -1,7 +1,7 @@
 use std::fmt;
 use clap::{Parser, ValueEnum};
 use rand::{Rng, seq::{IteratorRandom, SliceRandom}, distributions::{Distribution, WeightedIndex}};
-use log::{trace, debug};
+use log::{trace, debug, info};
 
 #[derive(Copy, Clone, Debug, ValueEnum)]
 pub enum SexMethod {
@@ -186,15 +186,19 @@ pub fn reproduce(
     if rng.gen_bool(skip) {
         debug!("Returning parents: {}, {}", parent.0, parent.1);
         return parent;
-    }
+    } 
+
+    // create an infinite iterator to switch between each parent
+    let parents = vec![parent.0, parent.1];
+    let mut p = parents.iter().cycle();
 
     let mut child = (String::new(), String::new());
     let mut num_points = match sex_method {
-        SexMethod::One => { (1..parent.0.len()).choose_multiple(&mut rng, 1) },
-        SexMethod::Two => { (1..parent.0.len()).choose_multiple(&mut rng, 2) },
+        SexMethod::One => { (1..length).choose_multiple(&mut rng, 1) },
+        SexMethod::Two => { (1..length).choose_multiple(&mut rng, 2) },
         SexMethod::Uniform => {
-            let num = rng.gen_range(3..parent.0.len());
-            (1..parent.0.len()).choose_multiple(&mut rng, num)
+            let num = rng.gen_range(3..length);
+            (1..length).choose_multiple(&mut rng, num)
         }
     };
 
@@ -202,12 +206,6 @@ pub fn reproduce(
 
     trace!("Crossover points: {:?}", num_points);
 
-    // create an infinite iterator to switch between each parent
-    let mut parents = Vec::<String>::new();
-    parents.push(parent.0);
-    parents.push(parent.1);
-
-    let mut p = parents.iter().cycle();
     let mut last = 0;
 
     for i in num_points {
@@ -238,7 +236,7 @@ pub fn reproduce(
     trace!("Child 1: {}", child.1);
 
     if mutation_rate > 0.0 {
-        child = mutate(child, mutation_rate, alphabet, force);
+        child = mutate(child, mutation_rate, alphabet.clone(), force);
     }
 
     debug!("Produced children: {}, {}", child.0, child.1);
@@ -262,10 +260,8 @@ pub fn generate_genitors(
         }
 
         let (weight, value, fit) = fitness(&genitor);
-        if fit >= 0.0 {
-            debug!("Created genitor: {genitor} (weight = {weight}, value = {value}, fitness = {fit})", );
-            v.push(genitor);
-        }
+        debug!("Created genitor: {genitor} (weight = {weight}, value = {value}, fitness = {fit})");
+        v.push(genitor);
     }
 
     v
@@ -285,7 +281,7 @@ pub fn select_genitors(
         .collect();
 
     // prioritize the best performers
-    g.sort_by(|(_, a), (_, b)| a.partial_cmp(b).unwrap());
+    g.sort_by(|(_, a), (_, b)| b.total_cmp(a));
 
     trace!("(Genitors, fitness) = {:?}", g);
 
@@ -358,7 +354,8 @@ pub fn generate_generation(
     sex_method: SexMethod,
     mutation_rate: f64,
     skip: f64,
-    force: bool
+    force: bool,
+    num_generation: usize
 ) -> Vec<String> {
     let mut rng = rand::thread_rng();
     let g: Vec<String> = match genitors {
@@ -378,7 +375,7 @@ pub fn generate_generation(
         panic!("Genitor genotype is incorrect length!");
     }
     
-    let pool = select_genitors(fitness, g, intermediate_population, selection_method);
+    let pool = select_genitors(&fitness, g, intermediate_population, selection_method);
 
     let mut next = Vec::<String>::new();
 
@@ -396,5 +393,17 @@ pub fn generate_generation(
         }
     }
 
+    next.sort_by(|a, b| fitness(&b).2.total_cmp(&fitness(&a).2));
+
+    info!("Generation {num_generation}");
+    info!("--------------------------");
+
+    for g in &next {
+        let (w, v, f) = fitness(&g);
+        info!("{g}: {w}, {v}, {f}");
+    }
+
+    info!("--------------------------");
+    info!("");
     next
 }
