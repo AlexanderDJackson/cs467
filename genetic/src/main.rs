@@ -37,15 +37,17 @@ fn main() {
         ),
     };
 
-    let mut best = &generation.genitors[0].clone();
+    generation.generate_generation(0);
 
-    for i in 0..generation.max_generations {
+    let mut best = generation.population[0].clone();
+
+    for i in 1..generation.max_generations {
         generation.generate_generation(i);
 
-        let new = &generation.genitors[0].clone();
+        let new = &generation.population[0];
 
         if new.fitness > best.fitness {
-            best = new;
+            best = new.clone();
         }
     }
 

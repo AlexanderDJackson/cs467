@@ -8,3 +8,7 @@ log = "0.4"
 rand = "0.8.5"
 simple_logger = "4.0.0"
 clap = { version = "4.1.6", features = ["derive"] }
+
+# Use full debug info
+[profile.dev]
+debug = true

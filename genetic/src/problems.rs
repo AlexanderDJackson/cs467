@@ -4,10 +4,11 @@ use rand::Rng;
 use std::fmt::{Display, Formatter, Result};
 
 pub trait Problem {
-    fn fitness(&self, genotype: &str) -> Fitness;
-    fn mutate(&self, args: &Args, genotype: &mut str);
-    fn format(&self, g: &Genotype, v: bool) -> &str;
-    fn get_alphabet(&self) -> Vec<char>;
+    fn fitness(&self, genotype: &Vec<u8>) -> Fitness;
+    fn mutate(&self, mutation_rate: f64, force_mutation: bool, genotype: &mut Genotype);
+    fn format(&self, g: &Genotype, v: bool) -> String;
+    fn alphabet(&self) -> &Vec<u8>;
+    fn len(&self) -> usize;
     fn new(file_name: &String) -> Option<Self>
     where
         Self: Sized;
@@ -36,18 +37,18 @@ pub mod knapsack {
     use std::io::{BufRead, BufReader};
 
     pub struct Knapsack {
-        pub alphabet: Vec<char>,
-        pub items: &'static Vec<(usize, usize)>,
+        pub alphabet: Vec<u8>,
+        pub items: Vec<(usize, usize)>,
         pub max_weight: usize,
     }
 
     impl Problem for Knapsack {
-        fn fitness(&self, g: &str) -> Fitness {
+        fn fitness(&self, g: &Vec<u8>) -> Fitness {
             let (weight, value) = self
                 .items
                 .iter()
-                .zip(g.chars())
-                .filter(|(_, b)| b == &'1')
+                .zip(g.iter())
+                .filter(|(_, b)| *b == &b'1')
                 .fold((0, 0), |(weight, value), ((w, v), _)| {
                     (weight + w, value + v)
                 });
@@ -65,58 +66,60 @@ pub mod knapsack {
             }
         }
 
-        fn format(&self, g: &Genotype, v: bool) -> &str {
+        fn format(&self, g: &Genotype, v: bool) -> String {
             let (weight, value) = self
                 .items
                 .iter()
-                .zip(g.genotype.chars())
-                .filter(|(_, b)| b == &'1')
+                .zip(g.genotype.iter())
+                .filter(|(_, b)| *b == &b'1')
                 .fold((0, 0), |(weight, value), ((w, v), _)| {
                     (weight + w, value + v)
                 });
 
             if v {
-                &format!(
+                format!(
                     "{:?}: (weight: {}, value: {}, fitness: {})",
                     self.items,
                     weight,
                     value,
-                    self.fitness(g.genotype)
+                    self.fitness(&g.genotype)
                 )
-                .to_string()
             } else {
-                &format!(
+                format!(
                     "weight: {}, value: {}, fitness: {}",
                     weight,
                     value,
-                    self.fitness(g.genotype)
+                    self.fitness(&g.genotype)
                 )
-                .to_string()
             }
         }
 
-        fn get_alphabet(&self) -> Vec<char> {
-            self.alphabet
+        fn alphabet(&self) -> &Vec<u8> {
+            &self.alphabet
         }
 
-        fn mutate(&self, args: &Args, g: &mut str) {
+        fn len(&self) -> usize {
+            self.items.len()
+        }
+
+        fn mutate(&self, mutation_rate: f64, force_mutation: bool, g: &mut Genotype) {
             let mut rng = rand::thread_rng();
-            trace!("Force mutation: {}", args.force_mutation);
+            trace!("Force mutation: {}", force_mutation);
 
             trace!("Testing for mutations");
-            for (n, mut c) in g.chars().enumerate() {
-                if rng.gen_bool(args.mutation_rate) {
+            for (n, c) in g.genotype.iter_mut().enumerate() {
+                if rng.gen_bool(mutation_rate) {
                     trace!("Mutated gene {n} from: {c}");
-                    if args.force_mutation {
-                        let n = rng.gen_range(0..self.get_alphabet().len() - 1);
-                        let m = self.get_alphabet()[n];
-                        c = if m == c {
-                            self.get_alphabet()[n + 1]
+                    if force_mutation {
+                        let n = rng.gen_range(0..self.alphabet().len() - 1);
+                        let m = self.alphabet()[n];
+                        *c = if m == *c {
+                            self.alphabet()[n + 1]
                         } else {
                             m
                         };
                     } else {
-                        c = self.get_alphabet()[rng.gen_range(0..self.get_alphabet().len())];
+                        *c = self.alphabet()[rng.gen_range(0..self.alphabet().len())];
                     }
 
                     trace!("to: {c}");
@@ -128,8 +131,8 @@ pub mod knapsack {
             let (max_weight, v) = parse_file(file_name)?;
 
             Some(Knapsack {
-                alphabet: vec!['0', '1'],
-                items: &v,
+                alphabet: vec![b'0', b'1'],
+                items: v,
                 max_weight,
             })
         }
