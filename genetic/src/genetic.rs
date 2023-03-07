@@ -1,14 +1,16 @@
 use crate::problems::*;
 use clap::{Parser, ValueEnum};
-use log::{debug, error, info, trace};
+use log::{trace, debug, info, warn, error};
 use rand::{
     distributions::{Distribution, WeightedIndex},
     seq::IteratorRandom,
-    thread_rng, Rng,
+    Rng,
 };
-use std::cmp::Ordering;
-use std::fmt::{Display, Formatter, Result};
-use std::panic;
+use std::{
+    cmp::Ordering,
+    fmt::{Display, Formatter, Result},
+    panic,
+};
 
 #[derive(Clone, PartialEq, PartialOrd)]
 pub struct Genotype {
@@ -16,14 +18,16 @@ pub struct Genotype {
     pub fitness: Fitness,
 }
 
-pub struct Generation<P: Problem> {
+pub struct Generation {
+    pub force_create: bool,
+    pub detect_crowding: f64,
     pub max_generations: usize,
     pub force_mutation: bool,
     pub population: Vec<Genotype>,
     pub intermediate: Vec<Genotype>,
     pub skip: f64,
     pub mutation_rate: f64,
-    pub problem: P,
+    pub problem: Box<dyn Problem>,
     pub selection_method: SelectionMethod,
     pub sex_method: SexMethod,
 }
@@ -95,7 +99,7 @@ impl Display for Fitness {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result {
         match self {
             Fitness::Valid(fitness) => {
-                write!(f, "Valid: {fitness}")
+                write!(f, "{fitness}")
             }
             Fitness::Invalid => {
                 write!(f, "Invalid!")
@@ -128,14 +132,6 @@ impl Fitness {
             lhs.total_cmp(rhs)
         }
     }
-
-    fn unwrap(&self) -> f64 {
-        if let Fitness::Valid(fitness) = self {
-            *fitness
-        } else {
-            panic!("Expected a Valid(f64) fitness, but found Invalid fitness");
-        }
-    }
 }
 
 impl Genotype {
@@ -143,61 +139,18 @@ impl Genotype {
         self.genotype.len()
     }
 
-    pub fn new<P: Problem>(generation: &Generation<P>) -> Genotype {
-        let mut rng = thread_rng();
-        let mut g = Genotype {
-            genotype: Vec::<u8>::with_capacity(generation.problem.len()),
-            fitness: Fitness::Invalid,
-        };
-
-        while g.len() < g.genotype.capacity() {
-            g.genotype.push(
-                generation.problem.alphabet()
-                    [rng.gen_range(0..generation.problem.alphabet().len())],
-            );
-        }
-
-        g.fitness = generation.problem.fitness(&g.genotype);
-        debug!("Created genitor: {g}");
-
-        g
+    pub fn new(generation: &Generation) -> Genotype {
+        generation.problem.generate_genotype(generation.force_create)
     }
 
-    pub fn from<P: Problem>(&mut self, generation: &Generation<P>, g: &str) {
-        self.genotype = g.as_bytes().to_vec();
-        let fitness = generation.problem.fitness(&self.genotype);
-        debug!("Created genitor: {self} {fitness}");
-    }
-
-    /*
-    pub fn mutate<P: Problem>(&mut self, generation: Generation<P>) {
-        let mut rng = rand::thread_rng();
-        trace!("Force mutation: {}", generation.force_mutation);
-
-        trace!("Testing for mutations");
-        for (n, mut c) in self.genotype.chars().enumerate() {
-            if rng.gen_bool(generation.mutation_rate) {
-                trace!("Mutated gene {n} from: {c}");
-                if generation.force_mutation {
-                    let n = rng.gen_range(0..generation.problem.alphabet().len() - 1);
-                    let m = generation.problem.alphabet()[n];
-                    c = if m == c {
-                        generation.problem.alphabet()[n + 1]
-                    } else {
-                        m
-                    };
-                } else {
-                    c = generation.problem.alphabet()
-                        [rng.gen_range(0..generation.problem.alphabet().len())];
-                }
-
-                trace!("to: {c}");
-            }
+    pub fn from(generation: &Generation, g: Vec<u8>) -> Genotype {
+        Genotype {
+            fitness: generation.problem.fitness(&g),
+            genotype: g,
         }
     }
-    */
 
-    pub fn reproduce<P: Problem>(&mut self, mate: &mut Genotype, generation: &Generation<P>) {
+    pub fn reproduce(&mut self, mate: &mut Genotype, generation: &Generation) {
         let length = self.genotype.len();
         if length != mate.len() || length != generation.problem.len() {
             panic!("Genitor lengths are incorrect: {} != {}", self, mate);
@@ -235,23 +188,41 @@ impl Genotype {
             toggle = !toggle;
         }
 
+        generation
+            .problem
+            .mutate(generation.mutation_rate, generation.force_mutation, self);
+        generation
+            .problem
+            .mutate(generation.mutation_rate, generation.force_mutation, mate);
+
         debug!("Produced children: {self}, {mate}");
     }
 }
 
-impl<P: Problem> Generation<P> {
-    pub fn from(args: Args, problem: P) -> Generation<P> {
+impl Generation {
+    pub fn from(args: Args) -> Generation {
         let mut generation = Generation {
+            force_create: args.force_create,
+            detect_crowding: args.detect_crowding,
             max_generations: args.max_generations,
             force_mutation: args.force_mutation,
             population: Vec::<Genotype>::with_capacity(args.population),
             intermediate: Vec::<Genotype>::with_capacity(args.intermediate_population),
             skip: args.skip,
             mutation_rate: args.mutation_rate,
-            problem,
+            problem: match args.problem {
+                ProblemType::Knapsack => 
+                    Box::new(knapsack::Knapsack::new(args.file).expect("Failed to create problem")),
+                ProblemType::Stocks => 
+                    Box::new(stocks::Market::new(args.file).expect("Failed to create problem")),
+            },
             selection_method: args.selection_method,
             sex_method: args.sex_method,
         };
+
+        for g in args.genitors {
+            generation.population.push(Genotype::from(&generation, g));
+        }
 
         generation.generate_genitors();
 
@@ -276,8 +247,9 @@ impl<P: Problem> Generation<P> {
                         self.intermediate.len()
                     };
 
-                    for n in 0..self.intermediate.len() {
-                        self.intermediate.push(self.population[rng.gen_range(0..self.population.len())].clone());
+                    for n in 0..self.intermediate.capacity() {
+                        self.intermediate
+                            .push(self.population[rng.gen_range(0..self.population.len())].clone());
 
                         if n >= limit {
                             break;
@@ -300,32 +272,37 @@ impl<P: Problem> Generation<P> {
                     loop {
                         // check each genotype
                         for genotype in &self.population {
-                            trace!(
-                                "Length = {}, Capacity = {}",
-                                self.intermediate.len(),
-                                self.intermediate.capacity()
-                            );
-                            let mut f = genotype.fitness.unwrap() / avg_fit;
-                            trace!("Fitness = {f} (avg = {avg_fit})");
+                            match genotype.fitness {
+                                Fitness::Valid(fit) => {
+                                    let mut f = fit / avg_fit;
+                                    trace!("Fitness = {f} (avg = {avg_fit})");
 
-                            // ensure we don't overfill the pool
-                            while f > 0.0 {
-                                if self.intermediate.len() == self.intermediate.capacity() {
-                                    break;
-                                } else if f > 1.0 {
-                                    trace!("Pushing {genotype} into the pool");
-                                    self.intermediate.push(genotype.clone());
-                                    f -= 1.0;
-                                } else {
-                                    if rng.gen_bool(f) {
-                                        trace!("Pushing {genotype} into the pool");
-                                        self.intermediate.push(genotype.clone());
+                                    // ensure we don't overfill the pool
+                                    while f > 0.0 {
+                                        if self.intermediate.len() == self.intermediate.capacity() {
+                                            break;
+                                        } else if f > 1.0 {
+                                            trace!("Pushing {genotype} into the pool");
+                                            self.intermediate.push(genotype.clone());
+                                            f -= 1.0;
+                                        } else {
+                                            if rng.gen_bool(f) {
+                                                trace!("Pushing {genotype} into the pool");
+                                                self.intermediate.push(genotype.clone());
+                                            }
+
+                                            f = 0.0;
+                                        }
                                     }
-
-                                    f = 0.0;
                                 }
+                                Fitness::Invalid => continue,
                             }
                         }
+
+                        assert!(
+                            self.intermediate.len() != 0,
+                            "No valid genotypes to select from!"
+                        );
 
                         // we don't have a max intermediate population
                         // so just run through the genotypes once
@@ -347,14 +324,18 @@ impl<P: Problem> Generation<P> {
 
                     // add the genitors randomly proportionally to their fitness
                     // ignoring invalid genotypes
-                    let dist = WeightedIndex::new(self.population.iter().map(|genotype| {
+                    let dist = match WeightedIndex::new(self.population.iter().map(|genotype| {
                         if let Fitness::Valid(fit) = genotype.fitness {
                             fit
                         } else {
                             0.0
                         }
-                    }))
-                    .expect("Unable to sample genitor population");
+                    })) {
+                        Ok(d) => d,
+                        Err(_) => {
+                            panic!("No valid genotypes to select from!");
+                        }
+                    };
 
                     let limit = if self.intermediate.len() < 1 {
                         self.population.len() * 2
@@ -373,15 +354,34 @@ impl<P: Problem> Generation<P> {
             panic!("All genotypes were invalid! Either try again or supply valid ones.");
         }
 
-        trace!("1 Intermediate population size = {}", self.intermediate.len());
-        //self.population.iter().for_each(|g| trace!("{g}"));
-        trace!("2 Intermediate population size = {}", self.intermediate.len());
+        self.intermediate.iter().for_each(|g| trace!("{g}"));
     }
 
     pub fn generate_genitors(&mut self) {
+        debug!("Generating genitors");
         while self.population.len() < self.population.capacity() {
             self.population.push(Genotype::new(&self));
         }
+    }
+
+    fn detected_crowding(&mut self) -> bool {
+        // iterate over consecutive pairs of genotypes
+        self.intermediate[0..self.intermediate.len() - 1]
+            .iter()
+            .step_by(2)
+            .zip(self.intermediate[1..].iter().step_by(2))
+            // count the number of matching genes
+            .fold(0, |crowded, (a, b)| {
+                crowded
+                    + a.genotype
+                        .iter()
+                        .zip(b.genotype.iter())
+                        .fold(0, |same, (a, b)| if a == b { same + 1 } else { same })
+            })
+            // average the number of matching genes
+            / (self.intermediate.len() / 2)
+            // return true if the average is greater than 80%
+            > (self.intermediate[0].len() as f64 * 0.8) as usize
     }
 
     pub fn generate_generation(&mut self, num_generation: usize) {
@@ -393,18 +393,20 @@ impl<P: Problem> Generation<P> {
             panic!("Genitor genotype is incorrect length!");
         }
 
-        trace!("Population size = {}", self.population.len());
-
         // fill the intermediate population
         self.select_genitors();
+
+        let old = self.mutation_rate;
+
+        if self.detect_crowding > 0.0 && self.detected_crowding() {
+            warn!("Crowding detected! Ramping up mutation rate for a generation.");
+            self.mutation_rate = 0.2;
+        }
 
         // clear the genitors
         self.population.clear();
 
         while self.population.len() < self.population.capacity() {
-            trace!("Population size = {}", self.population.len());
-            trace!("Itermediate population size = {}", self.intermediate.len());
-
             let mut genotype = (
                 self.intermediate[rng.gen_range(0..self.intermediate.len())].clone(),
                 self.intermediate[rng.gen_range(0..self.intermediate.len())].clone(),
@@ -422,14 +424,23 @@ impl<P: Problem> Generation<P> {
         // prioritize the best performers with a reverse sort
         self.population.sort_by(|a, b| b.fitness.cmp(&a.fitness));
 
+        self.mutation_rate = old;
+
         info!("Generation {num_generation}");
         info!("--------------------------");
 
+        let mut invalid = 0;
+
         for g in &self.population {
-            let fitness = self.problem.fitness(&g.genotype);
-            info!("{g}: {fitness}");
+            if let Fitness::Valid(_) = g.fitness {
+                info!("{}", self.problem.format(g));
+            } else {
+                invalid += 1;
+                debug!("{g}");
+            }
         }
 
+        info!("{invalid} invalid genotypes");
         info!("--------------------------");
         info!("");
     }
@@ -439,6 +450,14 @@ impl<P: Problem> Generation<P> {
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about)]
 pub struct Args {
+    /// Force create genitors until valid
+    #[arg(short = 'c', long, default_value_t = false)]
+    pub force_create: bool,
+
+    /// Detect crowding and ramp up mutation rate
+    #[arg(short, long, default_value_t = 0.0)]
+    pub detect_crowding: f64,
+
     /// The maximum number of generations
     #[arg(short = 'e', long, default_value_t = 100)]
     pub max_generations: usize,
@@ -448,12 +467,12 @@ pub struct Args {
     pub force_mutation: bool,
 
     /// The file needed for whatever problem
-    #[arg(long)]
-    pub file: Option<String>,
+    #[arg(long, num_args = 1..)]
+    pub file: Vec<String>,
 
     /// The initial population of genitors
     #[arg(short, long, num_args = 1..)]
-    pub genitors: Vec<String>,
+    pub genitors: Vec<Vec<u8>>,
 
     /// The number of genotypes in each intermediate population
     #[arg(short, long, default_value_t = 100)]
@@ -463,13 +482,13 @@ pub struct Args {
     #[arg(short = 'k', long, default_value_t = 0.1)]
     pub skip: f64,
 
-    /// Length of genotypes
-    #[arg(short, long, required = true)]
-    pub length: usize,
-
     /// The mutation rate
     #[arg(short, long, default_value_t = 0.01)]
     pub mutation_rate: f64,
+
+    /// Progress bar
+    #[arg(short = 'o', long, default_value_t = false)]
+    pub progress: bool,
 
     /// The number of genitors in each population
     #[arg(short, long, default_value_t = 50)]
