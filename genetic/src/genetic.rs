@@ -1,6 +1,6 @@
 use crate::problems::*;
 use clap::{Parser, ValueEnum};
-use log::{trace, debug, info, warn, error};
+use log::{debug, error, info, trace, warn};
 use rand::{
     distributions::{Distribution, WeightedIndex},
     seq::IteratorRandom,
@@ -140,14 +140,13 @@ impl Genotype {
     }
 
     pub fn new(generation: &Generation) -> Genotype {
-        generation.problem.generate_genotype(generation.force_create)
+        generation
+            .problem
+            .generate_genotype(generation.force_create)
     }
 
     pub fn from(genotype: Vec<u8>, fitness: Fitness) -> Genotype {
-        Genotype {
-            genotype,
-            fitness,
-        }
+        Genotype { genotype, fitness }
     }
 
     pub fn reproduce(&mut self, mate: &mut Genotype, generation: &Generation) {
@@ -211,10 +210,12 @@ impl Generation {
             skip: args.skip,
             mutation_rate: args.mutation_rate,
             problem: match args.problem {
-                ProblemType::Knapsack => 
-                    Box::new(knapsack::Knapsack::new(args.file).expect("Failed to create problem")),
-                ProblemType::Stocks => 
-                    Box::new(stocks::Market::new(args.file).expect("Failed to create problem")),
+                ProblemType::Knapsack => {
+                    Box::new(knapsack::Knapsack::new(args.file).expect("Failed to create problem"))
+                }
+                ProblemType::Stocks => {
+                    Box::new(stocks::Market::new(args.file).expect("Failed to create problem"))
+                }
             },
             selection_method: args.selection_method,
             sex_method: args.sex_method,
@@ -222,6 +223,7 @@ impl Generation {
 
         for g in args.genitors {
             let fit = generation.problem.fitness(&g);
+            trace!("Pushing {}", Genotype::from(g.clone(), fit.clone()));
             generation.population.push(Genotype::from(g, fit));
         }
 
@@ -258,19 +260,24 @@ impl Generation {
                     }
                 }
                 SelectionMethod::Remainder => {
-                    let avg_fit = self
+                    let sum = self
                         .population
                         .iter()
                         .fold(0.0, |total, f| match f.fitness {
                             Fitness::Valid(fit) => total + fit,
                             Fitness::Invalid => total,
-                        })
-                        / self.population.len() as f64;
+                        });
+                    let avg_fit = if sum > 0.0 {
+                        sum / self.population.len() as f64
+                    } else {
+                        0.0000000000001
+                    };
 
                     trace!("Average fitness = {avg_fit}");
 
                     // loop until the pool is full
                     loop {
+                        let mut pushed = 0;
                         // check each genotype
                         for genotype in &self.population {
                             match genotype.fitness {
@@ -285,11 +292,13 @@ impl Generation {
                                         } else if f > 1.0 {
                                             trace!("Pushing {genotype} into the pool");
                                             self.intermediate.push(genotype.clone());
+                                            pushed += 1;
                                             f -= 1.0;
                                         } else {
                                             if rng.gen_bool(f) {
                                                 trace!("Pushing {genotype} into the pool");
                                                 self.intermediate.push(genotype.clone());
+                                                pushed += 1;
                                             }
 
                                             f = 0.0;
@@ -300,10 +309,10 @@ impl Generation {
                             }
                         }
 
-                        assert!(
-                            self.intermediate.len() != 0,
-                            "No valid genotypes to select from!"
-                        );
+                        if pushed == 0 {
+                            self.intermediate
+                                .push(self.population[rng.gen_range(0..self.population.len())].clone());
+                        }
 
                         // we don't have a max intermediate population
                         // so just run through the genotypes once
@@ -329,7 +338,7 @@ impl Generation {
                         if let Fitness::Valid(fit) = genotype.fitness {
                             fit
                         } else {
-                            0.0
+                            0.01
                         }
                     })) {
                         Ok(d) => d,

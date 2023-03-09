@@ -294,7 +294,7 @@ pub mod stocks {
                     if day < *days || day == 0 {
                         0.0
                     } else {
-                        stock[(day - days)..day].iter().sum::<f64>() / day as f64
+                        stock[(day - days)..day].iter().sum::<f64>() / *days as f64
                     }
                 }
                 Average::Exponential(days) => {
@@ -481,7 +481,7 @@ pub mod stocks {
                     if data.0 == data.1 && data.1 == data.2 {
                         if data.0 {
                             Market::buy(&mut actor, stock[day]);
-                        } else if days.0 > day || days.1 > day || days.2 > day {
+                        } else if days.0 <= day || days.1 <= day || days.2 <= day {
                             Market::sell(&mut actor, stock[day]);
                         }
                     }
@@ -614,15 +614,13 @@ pub mod stocks {
             if let Fitness::Valid(f) = self.fitness(&g.genotype) {
                 if f == 0.0 {
                     return format!(
-                        "{} ({}) lost money",
-                        g.genotype.iter().map(|b| *b as char).collect::<String>(),
-                        f
+                        "{} made less than or exactly 0 dollars",
+                        g
                     );
                 } else {
                     return format!(
-                        "{} ({}) made {:.2} dollars",
-                        g.genotype.iter().map(|b| *b as char).collect::<String>(),
-                        f,
+                        "{} made {:.2} dollars",
+                        g,
                         -f / (f - 1.0)
                     );
                 }
@@ -683,17 +681,15 @@ pub mod stocks {
 
 #[cfg(test)]
 mod tests {
-    use crate::{problems::Problem, stocks::Market, Fitness, genetic::Genotype};
+    use crate::{genetic::Genotype, problems::Problem, stocks::Market, Fitness};
 
     #[test]
     fn test_market_simple_moving_average() {
-        let mut market = Market::new(vec!["testdata/tests/.txt".to_string()]).unwrap();
-        let genotype = vec![ b's', b'0', b'0', b'0', b'&', b's', b'0', b'0', b'0', b'|', b's', b'0', b'0', b'0'];
+        let mut market =
+            Market::new(vec!["testdata/tests/one-year-sinusoidal.txt".to_string()]).unwrap();
+        let genotype: Vec<u8> = String::from("s000&s000|s000").into();
         let fitness = Market::fitness(&market, &genotype);
 
-        let g = Genotype::from(
-            genotype,
-            fitness,
-        );
+        //assert!(fitness == Fitness::Valid(
     }
 }
