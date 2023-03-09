@@ -291,7 +291,7 @@ pub mod stocks {
         fn get_average(stock: &Vec<f64>, day: usize, average: &Average) -> f64 {
             match average {
                 Average::Simple(days) => {
-                    if day < *days || day == 0 {
+                    if day < *days || *days == 0 {
                         0.0
                     } else {
                         stock[(day - days)..day].iter().sum::<f64>() / *days as f64
