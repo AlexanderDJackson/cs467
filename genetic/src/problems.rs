@@ -243,6 +243,7 @@ pub mod stocks {
     use std::fs::File;
     use std::io::{BufRead, BufReader};
 
+    #[derive(Clone, Copy)]
     enum Average {
         Simple(usize),
         Exponential(usize),
@@ -260,6 +261,16 @@ pub mod stocks {
         gains: f64,
         stocks: usize,
         strategy: (Average, char, Average, char, Average),
+    }
+
+    impl Average {
+        fn unwrap(&self) -> usize {
+            match self {
+                Average::Simple(x) => *x,
+                Average::Exponential(x) => *x,
+                Average::Maximum(x) => *x,
+            }
+        }
     }
 
     impl Market {
@@ -280,14 +291,14 @@ pub mod stocks {
         fn get_average(stock: &Vec<f64>, day: usize, average: &Average) -> f64 {
             match average {
                 Average::Simple(days) => {
-                    if day < *days {
+                    if day < *days || day == 0 {
                         0.0
                     } else {
                         stock[(day - days)..day].iter().sum::<f64>() / day as f64
                     }
                 }
                 Average::Exponential(days) => {
-                    if day < *days {
+                    if day < *days || day == 0 {
                         0.0
                     } else {
                         let a = 2.0 / (*days as f64 + 1.0);
@@ -306,7 +317,7 @@ pub mod stocks {
                     }
                 }
                 Average::Maximum(days) => {
-                    if day < *days {
+                    if day < *days || day == 0 {
                         0.0
                     } else {
                         *stock[(day - *days)..day]
@@ -335,8 +346,8 @@ pub mod stocks {
                 return;
             }
 
-            let shares = ((actor.capital - 10.0) / price) as usize;
-            actor.capital -= 10.0 + shares as f64 * price;
+            let shares = (actor.capital / price) as usize;
+            actor.capital -= shares as f64 * price;
             actor.stocks += shares;
             debug!(
                 "Purchased {shares} stocks at ${price} a share to lose ${:.2}",
@@ -351,93 +362,131 @@ pub mod stocks {
         }
 
         fn sell(actor: &mut Actor, price: f64) {
-            if actor.stocks as f64 * price > 10.0 {
-                let shares = actor.stocks;
-                actor.gains += shares as f64 * price - 10.0;
-                actor.stocks = 0;
-                debug!(
-                    "Sold {shares} shares at ${price} to gain ${:.2}",
-                    shares as f64 * price - 10.0
-                );
-                trace!(
-                    "{} shares, ${:.2} in capital, ${:.2} in gains",
-                    actor.stocks,
-                    actor.capital,
-                    actor.gains
-                );
+            if actor.stocks == 0 {
+                return;
             }
+
+            let shares = actor.stocks;
+            actor.gains += shares as f64 * price;
+            actor.stocks = 0;
+            debug!(
+                "Sold {shares} shares at ${price} to gain ${:.2}",
+                shares as f64 * price
+            );
+            trace!(
+                "{} shares, ${:.2} in capital, ${:.2} in gains",
+                actor.stocks,
+                actor.capital,
+                actor.gains
+            );
         }
     }
 
     impl Problem for Market {
         fn fitness(&self, genotype: &Vec<u8>) -> Fitness {
-            let mut actor = Actor {
-                capital: self.funds,
-                gains: 0.0,
-                stocks: 0,
-                strategy: (
-                    Market::parse(genotype[0..4].try_into().expect("Invalid genotype!")),
-                    genotype[4] as char,
-                    Market::parse(genotype[5..9].try_into().expect("Invalid genotype!")),
-                    genotype[9] as char,
-                    Market::parse(genotype[10..14].try_into().expect("Invalid genotype!")),
-                ),
-            };
-
             let mut funds = 0.0;
+            let strategy = (
+                Market::parse(genotype[0..4].try_into().expect("Invalid genotype!")),
+                genotype[4] as char,
+                Market::parse(genotype[5..9].try_into().expect("Invalid genotype!")),
+                genotype[9] as char,
+                Market::parse(genotype[10..14].try_into().expect("Invalid genotype!")),
+            );
+            let days = (
+                strategy.0.unwrap(),
+                strategy.2.unwrap(),
+                strategy.4.unwrap(),
+            );
+            let lowest = days.0.min(days.1).min(days.2);
+
+            if days.0.max(days.1).max(days.2) == 0 {
+                return Fitness::Valid(0.0);
+            }
 
             for stock in &self.histories {
-                for day in 0..stock.len() - 1 {
-                    let data = (
-                        Market::get_average(&stock, day, &actor.strategy.0) > stock[day],
-                        Market::get_average(&stock, day, &actor.strategy.2) > stock[day],
-                        Market::get_average(&stock, day, &actor.strategy.4) > stock[day],
-                    );
+                let mut actor = Actor {
+                    capital: self.funds,
+                    gains: 0.0,
+                    stocks: 0,
+                    strategy,
+                };
 
-                    match actor.strategy.1 {
-                        '&' => match actor.strategy.3 {
-                            '&' => {
-                                if data.0 && data.1 && data.2 {
-                                    Market::buy(&mut actor, stock[day]);
-                                } else if !data.0 && !data.1 && !data.2 {
-                                    Market::sell(&mut actor, stock[day]);
-                                }
+                for day in lowest..stock.len() - 1 {
+                    let mut data = (false, false, false);
+
+                    data.0 = if day < days.0 {
+                        false
+                    } else {
+                        let avg = Market::get_average(&stock, day, &actor.strategy.0);
+
+                        if avg == 0.0 {
+                            if actor.strategy.1 == '&' {
+                                true
+                            } else {
+                                false
                             }
-                            '|' => {
-                                if data.0 && data.1 || data.2 {
-                                    Market::buy(&mut actor, stock[day]);
-                                } else if !data.0 && !data.1 || !data.2 {
-                                    Market::sell(&mut actor, stock[day]);
-                                }
-                            }
-                            _ => {
-                                panic!("Invalid genotype!");
-                            }
-                        },
-                        '|' => match actor.strategy.3 {
-                            '&' => {
-                                if data.0 || data.1 && data.2 {
-                                    Market::buy(&mut actor, stock[day]);
-                                } else if !data.0 || !data.1 && !data.2 {
-                                    Market::sell(&mut actor, stock[day]);
-                                }
-                            }
-                            '|' => {
-                                if data.0 || data.1 || data.2 {
-                                    Market::buy(&mut actor, stock[day]);
-                                } else if !data.0 || !data.1 || !data.2 {
-                                    Market::sell(&mut actor, stock[day]);
-                                }
-                            }
-                            _ => {
-                                panic!("Invalid genotype!");
-                            }
-                        },
-                        _ => {
-                            panic!("Invalid genotype!");
+                        } else {
+                            avg < stock[day]
+                        }
+                    };
+
+                    // true && ?
+                    // implicit false && ?
+                    if actor.strategy.1 == '&' && data.0 {
+                        let avg = Market::get_average(&stock, day, &actor.strategy.2);
+                        data.1 = if day < days.1 {
+                            false
+                        } else {
+                            avg < stock[day]
+                        };
+                    // ? || ?
+                    } else if actor.strategy.1 == '|' {
+                        if data.0 {
+                            data.1 = true;
+                        } else {
+                            let avg = Market::get_average(&stock, day, &actor.strategy.2);
+                            data.1 = if day < days.1 || avg == 0.0 {
+                                false
+                            } else {
+                                avg < stock[day]
+                            };
+                        }
+                    }
+
+                    // at this point, we already have the first two conditions evaluated
+                    // the answer is in data.2, as we evaluate from left to right
+                    // ? ** ? || ?
+                    if actor.strategy.3 == '|' {
+                        if data.1 {
+                            data.2 = true;
+                        } else {
+                            let avg = Market::get_average(&stock, day, &actor.strategy.4);
+                            data.2 = if day < days.2 || avg == 0.0 {
+                                false
+                            } else {
+                                avg < stock[day]
+                            };
+                        }
+                    // ? ** true && ?
+                    // implicit ? ** false && ?
+                    } else if actor.strategy.3 == '&' && data.1 {
+                        let avg = Market::get_average(&stock, day, &actor.strategy.4);
+                        data.2 = if day < days.2 {
+                            false
+                        } else {
+                            avg < stock[day]
+                        };
+                    }
+
+                    if data.0 == data.1 && data.1 == data.2 {
+                        if data.0 {
+                            Market::buy(&mut actor, stock[day]);
+                        } else if days.0 > day || days.1 > day || days.2 > day {
+                            Market::sell(&mut actor, stock[day]);
                         }
                     }
                 }
+
                 Market::sell(&mut actor, stock[stock.len() - 1]);
                 debug!("Made ${:.2}", actor.gains + actor.capital);
                 funds += actor.gains + actor.capital - self.funds;
@@ -629,5 +678,22 @@ pub mod stocks {
                 histories,
             })
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::{problems::Problem, stocks::Market, Fitness, genetic::Genotype};
+
+    #[test]
+    fn test_market_simple_moving_average() {
+        let mut market = Market::new(vec!["testdata/tests/.txt".to_string()]).unwrap();
+        let genotype = vec![ b's', b'0', b'0', b'0', b'&', b's', b'0', b'0', b'0', b'|', b's', b'0', b'0', b'0'];
+        let fitness = Market::fitness(&market, &genotype);
+
+        let g = Genotype::from(
+            genotype,
+            fitness,
+        );
     }
 }

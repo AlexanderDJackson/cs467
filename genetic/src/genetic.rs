@@ -32,7 +32,7 @@ pub struct Generation {
     pub sex_method: SexMethod,
 }
 
-#[derive(Clone, PartialEq, PartialOrd)]
+#[derive(Clone, Debug, PartialEq, PartialOrd)]
 pub enum Fitness {
     Valid(f64),
     Invalid,
@@ -143,10 +143,10 @@ impl Genotype {
         generation.problem.generate_genotype(generation.force_create)
     }
 
-    pub fn from(generation: &Generation, g: Vec<u8>) -> Genotype {
+    pub fn from(genotype: Vec<u8>, fitness: Fitness) -> Genotype {
         Genotype {
-            fitness: generation.problem.fitness(&g),
-            genotype: g,
+            genotype,
+            fitness,
         }
     }
 
@@ -221,7 +221,8 @@ impl Generation {
         };
 
         for g in args.genitors {
-            generation.population.push(Genotype::from(&generation, g));
+            let fit = generation.problem.fitness(&g);
+            generation.population.push(Genotype::from(g, fit));
         }
 
         generation.generate_genitors();
@@ -501,6 +502,10 @@ pub struct Args {
     /// The method of selection used to produce genitors from a population
     #[arg(short, long, value_enum, default_value_t = SelectionMethod::Equal)]
     pub selection_method: SelectionMethod,
+
+    /// Use multiple threads
+    #[arg(short, long, default_value_t = false)]
+    pub threads: bool,
 
     /// The method used to produce subsequent generations from genitors
     #[arg(short = 'x', long, value_enum, default_value_t = SexMethod::Uniform)]
