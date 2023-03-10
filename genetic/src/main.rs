@@ -48,10 +48,15 @@ fn main() {
     trace!("Arguments: {:?}", args);
 
     let mut generation = Generation::from(args);
-
-    generation.generate_generation(0);
-
     let mut best = generation.population[0].clone();
+
+    info!("Generation: 0 Best: {best}");
+
+    for i in 0..generation.population.len() {
+        trace!("\t{}", generation.population[i]);
+    }
+
+    info!("Generation: 0 Best: {best}");
 
     for i in 1..generation.max_generations {
         generation.generate_generation(i);

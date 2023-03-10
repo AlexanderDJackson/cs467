@@ -330,26 +330,26 @@ pub mod stocks {
         }
 
         fn buy(actor: &mut Actor, price: f64) {
-            if actor.capital < 2000.0 {
-                if actor.gains > 2000.0 {
-                    actor.gains -= 2000.0;
-                    actor.capital += 2000.0;
-                    debug!("Borrowing $2000 from gains");
+            if actor.capital + actor.gains < price {
+                return;
+            }
+
+            if actor.capital < 20000.0 {
+                if actor.gains > 20000.0 {
+                    actor.gains -= 20000.0;
+                    actor.capital += 20000.0;
+                    trace!("Borrowing $20,000 from gains");
                 } else if actor.gains > 0.0 {
-                    debug!("Borrowing ${} from gains", actor.gains);
+                    trace!("Borrowing ${} from gains", actor.gains);
                     actor.capital += actor.gains;
                     actor.gains = 0.0;
                 }
             }
 
-            if actor.capital < price {
-                return;
-            }
-
             let shares = (actor.capital / price) as usize;
             actor.capital -= shares as f64 * price;
             actor.stocks += shares;
-            debug!(
+            trace!(
                 "Purchased {shares} stocks at ${price} a share to lose ${:.2}",
                 shares as f64 * price
             );
@@ -369,7 +369,7 @@ pub mod stocks {
             let shares = actor.stocks;
             actor.gains += shares as f64 * price;
             actor.stocks = 0;
-            debug!(
+            trace!(
                 "Sold {shares} shares at ${price} to gain ${:.2}",
                 shares as f64 * price
             );
@@ -418,7 +418,6 @@ pub mod stocks {
                         false
                     } else {
                         let avg = Market::get_average(&stock, day, &actor.strategy.0);
-
                         if avg == 0.0 {
                             if actor.strategy.1 == '&' {
                                 true
@@ -488,7 +487,11 @@ pub mod stocks {
                 }
 
                 Market::sell(&mut actor, stock[stock.len() - 1]);
-                debug!("Made ${:.2}", actor.gains + actor.capital);
+                debug!(
+                    "{} Made ${:.2}",
+                    genotype.iter().map(|c| *c as char).collect::<String>(),
+                    actor.gains + actor.capital - self.funds
+                );
                 funds += actor.gains + actor.capital - self.funds;
             }
 
@@ -497,7 +500,7 @@ pub mod stocks {
 
             // Simple sigmoid function
             avg = avg.clamp(0.0, f64::MAX);
-            Fitness::Valid(avg / (avg + 1.0))
+            Fitness::Valid(f64::trunc(avg * 100.0) / 100.0) // / (avg + 1.0))
         }
 
         fn mutate(&self, mutation_rate: f64, force_mutation: bool, g: &mut Genotype) {
@@ -612,18 +615,11 @@ pub mod stocks {
 
         fn format(&self, g: &Genotype) -> String {
             if let Fitness::Valid(f) = self.fitness(&g.genotype) {
-                if f == 0.0 {
-                    return format!(
-                        "{} made less than or exactly 0 dollars",
-                        g
-                    );
-                } else {
-                    return format!(
-                        "{} made {:.2} dollars",
-                        g,
-                        -f / (f - 1.0)
-                    );
-                }
+                return format!(
+                    "{} made ${:.2}",
+                    g.genotype.iter().map(|c| *c as char).collect::<String>(),
+                    f
+                );
             } else {
                 panic!("Invalid fitness!");
             }

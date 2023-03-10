@@ -227,7 +227,9 @@ impl Generation {
             generation.population.push(Genotype::from(g, fit));
         }
 
-        generation.generate_genitors();
+        if generation.population.len() < generation.population.capacity() {
+            generation.generate_genitors();
+        }
 
         generation
     }
