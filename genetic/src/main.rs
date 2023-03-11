@@ -1,8 +1,9 @@
-use crate::genetic::*;
-use crate::knapsack::*;
-use crate::problems::*;
+use crate::{
+    genetic::*,
+    problems::*,
+};
 use clap::Parser;
-use log::{trace, LevelFilter};
+use log::{trace, info, LevelFilter, debug};
 use simple_logger::SimpleLogger;
 
 pub mod genetic;
@@ -12,6 +13,16 @@ pub mod problems;
 //mod tests;
 
 fn main() {
+    /*
+    panic::set_hook(Box::new(|panic_info| {
+        if let Some(s) = panic_info.payload().downcast_ref::<&str>() {
+            println!("Unable to continue: {s}");
+        } else {
+            println!("Unable to continue");
+        }
+    }));
+    */
+
     // Create logger that defaults to info level
     // Run with env variable RUST_LOG=<desired_level> to change from default
     match SimpleLogger::new()
@@ -26,28 +37,44 @@ fn main() {
     }
 
     let args = Args::parse();
-    let file_name = args.file.clone().expect("Unable to read filename");
+
+    let pb = if !args.progress {
+        indicatif::ProgressBar::hidden()
+    } else {
+        indicatif::ProgressBar::new(args.max_generations as u64)
+    };
+
 
     trace!("Arguments: {:?}", args);
 
-    let mut generation = match &args.problem {
-        ProblemType::Knapsack => Generation::<Knapsack>::from(
-            args,
-            knapsack::Knapsack::new(&file_name).expect("Failed to create problem"),
-        ),
-    };
+    let mut generation = Generation::from(args);
+    let mut best = generation.population[0].clone();
 
-    let mut best = &generation.genitors[0].clone();
+    info!("Generation: 0 Best: {best}");
 
-    for i in 0..generation.max_generations {
+    for i in 0..generation.population.len() {
+        debug!("\t{}", generation.population[i]);
+    }
+
+    for i in 1..generation.max_generations {
         generation.generate_generation(i);
 
-        let new = &generation.genitors[0].clone();
+        pb.inc(1);
+
+        let new = &generation.population[0];
 
         if new.fitness > best.fitness {
-            best = new;
+            best = new.clone();
+        }
+
+        info!("Generation: {i} Best: {best}");
+
+        for i in 0..generation.population.len() {
+            debug!("\t{}", generation.population[i]);
         }
     }
 
-    println!("Best Solution: {best}");
+    pb.finish();
+
+    println!("Best Solution: {}", generation.problem.format(&best));
 }
