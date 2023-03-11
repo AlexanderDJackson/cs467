@@ -109,7 +109,7 @@ pub mod knapsack {
             g.fitness = self.fitness(&g.genotype);
 
             if force_create {
-                debug!("force creation enabled, mutating until valid...");
+                trace!("force creation enabled, mutating until valid...");
                 while g.fitness == Fitness::Invalid {
                     self.mutate(0.1, true, &mut g);
                     trace!("{}", self.format(&g));
@@ -411,6 +411,8 @@ pub mod stocks {
                     strategy,
                 };
 
+                //let mut avgs = (0.0, 0.0, 0.0);
+
                 for day in lowest..stock.len() - 1 {
                     let mut data = (false, false, false);
 
@@ -495,12 +497,11 @@ pub mod stocks {
                 funds += actor.gains + actor.capital - self.funds;
             }
 
-            let mut avg = funds / self.histories.len() as f64;
+            let avg = funds / self.histories.len() as f64;
             debug!("Average return: ${:.2}", avg);
 
             // Simple sigmoid function
-            avg = avg.clamp(0.0, f64::MAX);
-            Fitness::Valid(f64::trunc(avg * 100.0) / 100.0) // / (avg + 1.0))
+            Fitness::Valid(f64::trunc(avg * 100.0) / 100.0)
         }
 
         fn mutate(&self, mutation_rate: f64, force_mutation: bool, g: &mut Genotype) {

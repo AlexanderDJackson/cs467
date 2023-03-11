@@ -231,6 +231,8 @@ impl Generation {
             generation.generate_genitors();
         }
 
+        generation.population.sort_by(|a, b| b.fitness.cmp(&a.fitness));
+
         generation
     }
 
@@ -338,7 +340,7 @@ impl Generation {
                     // ignoring invalid genotypes
                     let dist = match WeightedIndex::new(self.population.iter().map(|genotype| {
                         if let Fitness::Valid(fit) = genotype.fitness {
-                            fit
+                            fit.clamp(0.01, f64::MAX)
                         } else {
                             0.01
                         }

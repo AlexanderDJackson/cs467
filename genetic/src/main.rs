@@ -3,7 +3,7 @@ use crate::{
     problems::*,
 };
 use clap::Parser;
-use log::{trace, info, LevelFilter};
+use log::{trace, info, LevelFilter, debug};
 use simple_logger::SimpleLogger;
 
 pub mod genetic;
@@ -53,10 +53,8 @@ fn main() {
     info!("Generation: 0 Best: {best}");
 
     for i in 0..generation.population.len() {
-        trace!("\t{}", generation.population[i]);
+        debug!("\t{}", generation.population[i]);
     }
-
-    info!("Generation: 0 Best: {best}");
 
     for i in 1..generation.max_generations {
         generation.generate_generation(i);
@@ -72,7 +70,7 @@ fn main() {
         info!("Generation: {i} Best: {best}");
 
         for i in 0..generation.population.len() {
-            trace!("\t{}", generation.population[i]);
+            debug!("\t{}", generation.population[i]);
         }
     }
 
