@@ -678,15 +678,146 @@ pub mod stocks {
 
 #[cfg(test)]
 mod tests {
+    use std::sync::Once;
     use crate::{genetic::Genotype, problems::Problem, stocks::Market, Fitness};
 
-    #[test]
-    fn test_market_simple_moving_average() {
-        let mut market =
-            Market::new(vec!["testdata/tests/one-year-sinusoidal.txt".to_string()]).unwrap();
-        let genotype: Vec<u8> = String::from("s000&s000|s000").into();
-        let fitness = Market::fitness(&market, &genotype);
+    static mut MARKET: Market = Market {
+        alphabet: Vec::new(),
+        funds: 0.0,
+        histories: Vec::new(),
+    };
 
-        //assert!(fitness == Fitness::Valid(
+    fn market() -> &'static Market {
+        static INIT: Once = Once::new();
+
+        unsafe {
+            INIT.call_once(|| {
+                MARKET = Market::new(vec![
+                    "testdata/tests/one-year-sinusoidal-higher.txt".to_string()
+                ]).unwrap();
+            });
+
+            &MARKET
+        }
+    }
+
+    #[test]
+    fn test_market_simple_moving_average_one() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("s001&s000&s000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(53601.79));
+    }
+
+    #[test]
+    fn test_market_simple_moving_average_two() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("s002&s000&s000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(53002.57));
+    }
+
+    #[test]
+    fn test_market_simple_moving_average_five() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("s005&s000&s000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(32162.98));
+    }
+
+    #[test]
+    fn test_market_simple_moving_average_ten() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("s010&s000&s000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(6386.75));
+    }
+
+    #[test]
+    fn test_market_simple_moving_average_twenty() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("s020&s000&s000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(-2976.42));
+    }
+
+    #[test]
+    fn test_market_simple_moving_average_thirty() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("s030&s000&s000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(-909.05));
+    }
+
+    #[test]
+    fn test_market_exponential_moving_average_one() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("e001&e000&e000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(53601.79));
+    }
+
+    #[test]
+    fn test_market_exponential_moving_average_two() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("e002&e000&e000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(53002.57));
+    }
+
+    #[test]
+    fn test_market_exponential_moving_average_five() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("e005&e000&e000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(32162.98));
+    }
+
+    #[test]
+    fn test_market_exponential_moving_average_ten() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("e010&e000&e000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(6386.75));
+    }
+
+    #[test]
+    fn test_market_exponential_moving_average_twenty() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("e020&e000&e000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(-9534.74));
+    }
+
+    #[test]
+    fn test_market_exponential_moving_average_thirty() {
+        let market = market();
+
+        let genotype: Vec<u8> = String::from("e030&e000&e000").into();
+        let fitness = Market::fitness(market, &genotype);
+
+        assert_eq!(fitness, Fitness::Valid(-909.05));
     }
 }
