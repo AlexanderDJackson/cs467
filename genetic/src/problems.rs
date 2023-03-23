@@ -288,31 +288,51 @@ pub mod stocks {
             }
         }
 
-        fn get_average(stock: &Vec<f64>, day: usize, average: &Average) -> f64 {
+        fn get_average(
+            stock: &Vec<f64>,
+            day: usize,
+            average: &Average,
+            previous: Option<f64>,
+            denom: Option<f64>,
+        ) -> f64 {
             match average {
                 Average::Simple(days) => {
                     if day < *days || *days == 0 {
                         0.0
                     } else {
-                        stock[(day - days)..day].iter().sum::<f64>() / *days as f64
+                        if let Some(p) = previous {
+                            (p * *days as f64 + stock[day - 1] - stock[day - days - 1])
+                                / (*days as f64)
+                        } else {
+                            stock[(day - days)..day].iter().sum::<f64>() / *days as f64
+                        }
                     }
                 }
                 Average::Exponential(days) => {
                     if day < *days || day == 0 {
                         0.0
                     } else {
-                        let a = 2.0 / (*days as f64 + 1.0);
-                        let (n, d, _) = stock[(day - days)..day].iter().fold(
-                            (0.0, 0.0, 0.0),
-                            |(n, d, x), p| {
-                                (n + (p * (1.0 - a).powf(x)), d + (1.0 - a).powf(x), x + 1.0)
-                            },
-                        );
+                        let a = 1.0 - 2.0 / (*days as f64 + 1.0);
 
-                        if d == 0.0 {
-                            0.0
+                        if let Some(p) = previous {
+                            let d = denom
+                                .expect("Denominator must be provided for exponential average");
+
+                            (((p * d - stock[day - days - 1]) / a)
+                                + (stock[day - 1] * a.powf(*days as f64)))
+                                / d
                         } else {
-                            n / d
+                            let (n, d, _) = stock[(day - days)..day]
+                                .iter()
+                                .fold((0.0, 0.0, 0.0), |(n, d, x), p| {
+                                    (n + (p * a.powf(x)), d + a.powf(x), x + 1.0)
+                                });
+
+                            if d == 0.0 {
+                                0.0
+                            } else {
+                                n / d
+                            }
                         }
                     }
                 }
@@ -320,10 +340,14 @@ pub mod stocks {
                     if day < *days || day == 0 {
                         0.0
                     } else {
-                        *stock[(day - *days)..day]
-                            .iter()
-                            .max_by(|a, b| a.partial_cmp(b).unwrap())
-                            .unwrap_or(&0.0)
+                        if let Some(p) = previous {
+                            p.max(stock[day - 1])
+                        } else {
+                            *stock[(day - *days)..day]
+                                .iter()
+                                .max_by(|a, b| a.partial_cmp(b).unwrap())
+                                .unwrap_or(&0.0)
+                        }
                     }
                 }
             }
@@ -384,6 +408,7 @@ pub mod stocks {
 
     impl Problem for Market {
         fn fitness(&self, genotype: &Vec<u8>) -> Fitness {
+            debug!("Evaluating {:?}", genotype);
             let mut funds = 0.0;
             let strategy = (
                 Market::parse(genotype[0..4].try_into().expect("Invalid genotype!")),
@@ -398,8 +423,41 @@ pub mod stocks {
                 strategy.4.unwrap(),
             );
             let lowest = days.0.min(days.1).min(days.2);
+            let denoms = (
+                if let Average::Exponential(_) = strategy.0 {
+                    (0..days.0)
+                        .fold(
+                            (0.0, 1.0 - 2.0 / (days.0 as f64 + 1.0), 0.0),
+                            |(d, a, x), _| (d + (a).powf(x), a, x + 1.0),
+                        )
+                        .0
+                } else {
+                    0.0
+                },
+                if let Average::Exponential(_) = strategy.2 {
+                    (0..days.1)
+                        .fold(
+                            (0.0, 1.0 - 2.0 / (days.1 as f64 + 1.0), 0.0),
+                            |(d, a, x), _| (d + (a).powf(x), a, x + 1.0),
+                        )
+                        .0
+                } else {
+                    0.0
+                },
+                if let Average::Exponential(_) = strategy.4 {
+                    (0..days.2)
+                        .fold(
+                            (0.0, 1.0 - 2.0 / (days.2 as f64 + 1.0), 0.0),
+                            |(d, a, x), _| (d + (a).powf(x), a, x + 1.0),
+                        )
+                        .0
+                } else {
+                    0.0
+                },
+            );
 
             if days.0.max(days.1).max(days.2) == 0 {
+                trace!("No applicable strategies");
                 return Fitness::Valid(0.0);
             }
 
@@ -411,80 +469,71 @@ pub mod stocks {
                     strategy,
                 };
 
-                //let mut avgs = (0.0, 0.0, 0.0);
+                let mut avgs = (0.0, 0.0, 0.0);
 
                 for day in lowest..stock.len() - 1 {
-                    let mut data = (false, false, false);
+                    avgs = (
+                        Market::get_average(
+                            stock,
+                            day,
+                            &actor.strategy.0,
+                            if avgs.0 == 0.0 { None } else { Some(avgs.0) },
+                            if avgs.0 == 0.0 { None } else { Some(denoms.0) },
+                        ),
+                        Market::get_average(
+                            stock,
+                            day,
+                            &actor.strategy.2,
+                            if avgs.1 == 0.0 { None } else { Some(avgs.1) },
+                            if avgs.1 == 0.0 { None } else { Some(denoms.1) },
+                        ),
+                        Market::get_average(
+                            stock,
+                            day,
+                            &actor.strategy.4,
+                            if avgs.2 == 0.0 { None } else { Some(avgs.2) },
+                            if avgs.2 == 0.0 { None } else { Some(denoms.2) },
+                        ),
+                    );
 
-                    data.0 = if day < days.0 {
-                        false
-                    } else {
-                        let avg = Market::get_average(&stock, day, &actor.strategy.0);
-                        if avg == 0.0 {
-                            if actor.strategy.1 == '&' {
-                                true
+                    let buy = {
+                        (days.0 != 0 || days.1 != 0 || days.2 != 0)
+                            && if actor.strategy.1 == '&' {
+                                if actor.strategy.3 == '&' {
+                                    days.0 <= day
+                                        && avgs.0 < stock[day]
+                                        && days.1 <= day
+                                        && avgs.1 < stock[day]
+                                        && days.2 <= day
+                                        && avgs.2 < stock[day]
+                                } else {
+                                    days.0 <= day
+                                        && avgs.0 < stock[day]
+                                        && days.1 <= day
+                                        && avgs.1 < stock[day]
+                                        && days.2 <= day
+                                        && avgs.2 < stock[day]
+                                        && avgs.2 != 0.0
+                                }
                             } else {
-                                false
+                                if actor.strategy.3 == '|' {
+                                    (days.0 <= day && avgs.0 < stock[day] && avgs.0 != 0.0)
+                                        || (days.1 <= day && avgs.1 < stock[day] && avgs.1 != 0.0)
+                                        || (days.2 <= day && avgs.2 < stock[day] && avgs.2 != 0.0)
+                                } else {
+                                    (days.0 <= day && avgs.0 < stock[day] && avgs.0 != 0.0)
+                                        || (days.1 <= day && avgs.1 < stock[day] && avgs.1 != 0.0)
+                                        || (days.2 <= day && avgs.2 < stock[day])
+                                }
                             }
-                        } else {
-                            avg < stock[day]
-                        }
                     };
 
-                    // true && ?
-                    // implicit false && ?
-                    if actor.strategy.1 == '&' && data.0 {
-                        let avg = Market::get_average(&stock, day, &actor.strategy.2);
-                        data.1 = if day < days.1 {
-                            false
-                        } else {
-                            avg < stock[day]
-                        };
-                    // ? || ?
-                    } else if actor.strategy.1 == '|' {
-                        if data.0 {
-                            data.1 = true;
-                        } else {
-                            let avg = Market::get_average(&stock, day, &actor.strategy.2);
-                            data.1 = if day < days.1 || avg == 0.0 {
-                                false
-                            } else {
-                                avg < stock[day]
-                            };
-                        }
-                    }
-
-                    // at this point, we already have the first two conditions evaluated
-                    // the answer is in data.2, as we evaluate from left to right
-                    // ? ** ? || ?
-                    if actor.strategy.3 == '|' {
-                        if data.1 {
-                            data.2 = true;
-                        } else {
-                            let avg = Market::get_average(&stock, day, &actor.strategy.4);
-                            data.2 = if day < days.2 || avg == 0.0 {
-                                false
-                            } else {
-                                avg < stock[day]
-                            };
-                        }
-                    // ? ** true && ?
-                    // implicit ? ** false && ?
-                    } else if actor.strategy.3 == '&' && data.1 {
-                        let avg = Market::get_average(&stock, day, &actor.strategy.4);
-                        data.2 = if day < days.2 {
-                            false
-                        } else {
-                            avg < stock[day]
-                        };
-                    }
-
-                    if data.0 == data.1 && data.1 == data.2 {
-                        if data.0 {
-                            Market::buy(&mut actor, stock[day]);
-                        } else if days.0 <= day || days.1 <= day || days.2 <= day {
-                            Market::sell(&mut actor, stock[day]);
-                        }
+                    if buy {
+                        trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
+                        Market::buy(&mut actor, stock[day]);
+                    } else if days.0 <= day || days.1 <= day || days.2 <= day {
+                        trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
+                        Market::sell(&mut actor, stock[day]);
                     }
                 }
 
