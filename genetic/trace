@@ -1,0 +1,1080 @@
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.00, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.88, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Purchased 21505 stocks at $0.93 a share to lose $19999.65
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] 21505 shares, $0.35 in capital, $0.00 in gains
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.88, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.88, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.89, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.90, 0.00, 0.00
+2023-03-20T19:32:27.051Z TRACE [genetic::problems::stocks] Average: 0.91, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.92, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.93, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 21505 shares at $0.91 to gain $19569.55
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.35 in capital, $19569.55 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.95, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.94, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $19569.55 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 20385 stocks at $0.96 a share to lose $19569.60
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 20385 shares, $0.30 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.94, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.95, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.95, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.95, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.97, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.99, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.00, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.01, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 20385 shares at $0.99 to gain $20181.15
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.30 in capital, $20181.15 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 19608 stocks at $1.02 a share to lose $20000.16
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 19608 shares, $0.14 in capital, $181.15 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $181.15000000000146 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 174 stocks at $1.04 a share to lose $180.96
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 19782 shares, $0.33 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 19782 shares at $0.99 to gain $19584.18
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.33 in capital, $19584.18 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $19584.18 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 16883 stocks at $1.16 a share to lose $19584.28
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 16883 shares, $0.23 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.03, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.04, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.05, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.06, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.08, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 16883 shares at $1.08 to gain $18233.64
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.23 in capital, $18233.64 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.10, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.10, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $18233.64 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 16728 stocks at $1.09 a share to lose $18233.52
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 16728 shares, $0.35 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.08, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.11, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.13, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.14, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.16, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.18, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.20, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 16728 shares at $1.12 to gain $18735.36
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.35 in capital, $18735.36 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.20, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $18735.36 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 15484 stocks at $1.21 a share to lose $18735.64
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 15484 shares, $0.07 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.21, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 15484 shares at $1.19 to gain $18425.96
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.07 in capital, $18425.96 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.22, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.22, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.20, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.19, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.18, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.17, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.15, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.13, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.12, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.10, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $18425.96 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 16600 stocks at $1.11 a share to lose $18426.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 16600 shares, $0.03 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 16600 shares at $1.08 to gain $17928.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.03 in capital, $17928.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.08, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $17928 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 16600 stocks at $1.08 a share to lose $17928.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 16600 shares, $0.03 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.06, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.08, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.10, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 16600 shares at $1.05 to gain $17430.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.03 in capital, $17430.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.10, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.09, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.08, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.06, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.04, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.00, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.99, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.97, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.94, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.93, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.92, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.90, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.88, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.87, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.86, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.84, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.83, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.81, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.80, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $17430 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 21000 stocks at $0.83 a share to lose $17430.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 21000 shares, $0.03 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.79, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.79, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.79, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.80, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.81, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.81, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 21000 shares at $0.81 to gain $17010.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.03 in capital, $17010.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.82, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $17010 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 20250 stocks at $0.84 a share to lose $17010.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 20250 shares, $0.03 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.82, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 20250 shares at $0.81 to gain $16402.50
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.03 in capital, $16402.50 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.83, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.83, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.83, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $16402.5 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 19072 stocks at $0.86 a share to lose $16401.92
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 19072 shares, $0.61 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.83, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.84, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.85, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.86, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.87, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.89, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.90, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.91, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.92, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.93, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.94, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 19072 shares at $0.92 to gain $17546.24
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.61 in capital, $17546.24 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.95, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.94, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $17546.24 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 18089 stocks at $0.97 a share to lose $17546.33
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 18089 shares, $0.52 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.94, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.95, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.97, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.97, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.98, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.99, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.00, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 18089 shares at $0.94 to gain $17003.66
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.52 in capital, $17003.66 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.00, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.01, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.01, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.99, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.98, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.95, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.94, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.93, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.91, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.90, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.89, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.88, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.88, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.87, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.87, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.86, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.86, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.85, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.85, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $17003.66 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 19545 stocks at $0.87 a share to lose $17004.15
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 19545 shares, $0.03 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.85, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.85, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.86, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.86, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.87, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.88, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.90, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.92, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.94, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.96, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.98, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.99, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.04, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.05, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.06, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 19545 shares at $1.05 to gain $20522.25
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.03 in capital, $20522.25 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.07, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.06, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 18518 stocks at $1.08 a share to lose $19999.44
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 18518 shares, $0.59 in capital, $522.25 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.05, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $522.25 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 488 stocks at $1.07 a share to lose $522.16
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 19006 shares, $0.68 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.05, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.05, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 19006 shares at $1.01 to gain $19196.06
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.68 in capital, $19196.06 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.04, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.03, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.02, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 1.01, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.99, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.99, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.93, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.87, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.80, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.74, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.67, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.62, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.56, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.51, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.46, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $19196.06 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 54847 stocks at $0.35 a share to lose $19196.45
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 54847 shares, $0.29 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Sold 54847 shares at $0.36 to gain $19744.92
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 0 shares, $0.29 in capital, $19744.92 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Borrowing $19744.92 from gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Purchased 73130 stocks at $0.27 a share to lose $19745.10
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] 73130 shares, $0.11 in capital, $0.00 in gains
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.052Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 73130 shares at $0.36 to gain $26326.80
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.11 in capital, $26326.80 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 52631 stocks at $0.38 a share to lose $19999.78
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 52631 shares, $0.33 in capital, $6326.80 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 52631 shares at $0.37 to gain $19473.47
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.33 in capital, $25800.27 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 57143 stocks at $0.35 a share to lose $20000.05
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 57143 shares, $0.28 in capital, $5800.27 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $5800.27 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 16573 stocks at $0.35 a share to lose $5800.55
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 73716 shares, $0.00 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 73716 shares at $0.33 to gain $24326.28
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.00 in capital, $24326.28 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 55555 stocks at $0.36 a share to lose $19999.80
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 55555 shares, $0.20 in capital, $4326.28 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $4326.2800000000025 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 11385 stocks at $0.38 a share to lose $4326.30
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 66940 shares, $0.18 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 66940 shares at $0.33 to gain $22090.20
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.18 in capital, $22090.20 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 55556 stocks at $0.36 a share to lose $20000.16
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 55556 shares, $0.02 in capital, $2090.20 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 55556 shares at $0.35 to gain $19444.60
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.02 in capital, $21534.80 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 54054 stocks at $0.37 a share to lose $19999.98
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 54054 shares, $0.04 in capital, $1534.80 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 54054 shares at $0.35 to gain $18918.90
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.04 in capital, $20453.70 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 55555 stocks at $0.36 a share to lose $19999.80
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 55555 shares, $0.24 in capital, $453.70 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $453.6999999999971 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 1163 stocks at $0.39 a share to lose $453.57
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 56718 shares, $0.37 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 56718 shares at $0.36 to gain $20418.48
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.37 in capital, $20418.48 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 51283 stocks at $0.39 a share to lose $20000.37
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 51283 shares, $0.00 in capital, $418.48 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $418.47999999999956 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 1073 stocks at $0.39 a share to lose $418.47
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 52356 shares, $0.01 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 52356 shares at $0.36 to gain $18848.16
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.01 in capital, $18848.16 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $18848.16 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 45971 stocks at $0.41 a share to lose $18848.11
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 45971 shares, $0.06 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 45971 shares at $0.45 to gain $20686.95
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.06 in capital, $20686.95 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 43478 stocks at $0.46 a share to lose $19999.88
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 43478 shares, $0.18 in capital, $686.95 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 43478 shares at $0.45 to gain $19565.10
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.18 in capital, $20252.05 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $20,000 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 51282 stocks at $0.39 a share to lose $19999.98
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 51282 shares, $0.20 in capital, $252.05 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $252.0500000000029 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 663 stocks at $0.38 a share to lose $251.94
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 51945 shares, $0.31 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 51945 shares at $0.36 to gain $18700.20
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.31 in capital, $18700.20 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $18700.2 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 50541 stocks at $0.37 a share to lose $18700.17
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 50541 shares, $0.34 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 50541 shares at $0.36 to gain $18194.76
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.34 in capital, $18194.76 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $18194.76 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 49175 stocks at $0.37 a share to lose $18194.75
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 49175 shares, $0.35 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 49175 shares at $0.36 to gain $17703.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.35 in capital, $17703.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $17703 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 45393 stocks at $0.39 a share to lose $17703.27
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 45393 shares, $0.08 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 45393 shares at $0.41 to gain $18611.13
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.08 in capital, $18611.13 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $18611.129999999997 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 42298 stocks at $0.44 a share to lose $18611.12
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 42298 shares, $0.09 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 42298 shares at $0.37 to gain $15650.26
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.09 in capital, $15650.26 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $15650.26 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 44715 stocks at $0.35 a share to lose $15650.25
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 44715 shares, $0.10 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 44715 shares at $0.34 to gain $15203.10
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.10 in capital, $15203.10 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $15203.1 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 44715 stocks at $0.34 a share to lose $15203.10
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 44715 shares, $0.10 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 44715 shares at $0.34 to gain $15203.10
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.10 in capital, $15203.10 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $15203.1 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 46070 stocks at $0.33 a share to lose $15203.10
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 46070 shares, $0.10 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 46070 shares at $0.32 to gain $14742.40
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.10 in capital, $14742.40 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $14742.4 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 44674 stocks at $0.33 a share to lose $14742.42
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 44674 shares, $0.08 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 44674 shares at $0.32 to gain $14295.68
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.08 in capital, $14295.68 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $14295.68 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 51056 stocks at $0.28 a share to lose $14295.68
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 51056 shares, $0.08 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 51056 shares at $0.31 to gain $15827.36
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.08 in capital, $15827.36 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $15827.36 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 47961 stocks at $0.33 a share to lose $15827.13
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 47961 shares, $0.31 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Sold 47961 shares at $0.34 to gain $16306.74
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 0 shares, $0.31 in capital, $16306.74 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Borrowing $16306.740000000002 from gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Purchased 45297 stocks at $0.36 a share to lose $16306.92
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] 45297 shares, $0.13 in capital, $0.00 in gains
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.053Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 45297 shares at $0.38 to gain $17212.86
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.13 in capital, $17212.86 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $17212.86 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 44135 stocks at $0.39 a share to lose $17212.65
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 44135 shares, $0.34 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 44135 shares at $0.37 to gain $16329.95
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.34 in capital, $16329.95 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $16329.949999999999 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 42974 stocks at $0.38 a share to lose $16330.12
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 42974 shares, $0.17 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 42974 shares at $0.39 to gain $16759.86
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.17 in capital, $16759.86 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $16759.86 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 41900 stocks at $0.4 a share to lose $16760.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 41900 shares, $0.03 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 41900 shares at $0.43 to gain $18017.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.03 in capital, $18017.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $18017 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 40037 stocks at $0.45 a share to lose $18016.65
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 40037 shares, $0.38 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 40037 shares at $0.44 to gain $17616.28
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.38 in capital, $17616.28 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $17616.28 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 40968 stocks at $0.43 a share to lose $17616.24
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 40968 shares, $0.42 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 40968 shares at $0.42 to gain $17206.56
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.42 in capital, $17206.56 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $17206.559999999998 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 40969 stocks at $0.42 a share to lose $17206.98
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 40969 shares, $0.00 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 40969 shares at $0.43 to gain $17616.67
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.00 in capital, $17616.67 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $17616.67 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 40037 stocks at $0.44 a share to lose $17616.28
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 40037 shares, $0.39 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 40037 shares at $0.43 to gain $17215.91
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.39 in capital, $17215.91 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $17215.91 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 39127 stocks at $0.44 a share to lose $17215.88
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 39127 shares, $0.42 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 39127 shares at $0.44 to gain $17215.88
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.42 in capital, $17215.88 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.45, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $17215.88 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 39127 stocks at $0.44 a share to lose $17215.88
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 39127 shares, $0.42 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 39127 shares at $0.42 to gain $16433.34
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.42 in capital, $16433.34 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $16433.34 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 38218 stocks at $0.43 a share to lose $16433.74
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 38218 shares, $0.02 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 38218 shares at $0.42 to gain $16051.56
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.02 in capital, $16051.56 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $16051.56 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 35670 stocks at $0.45 a share to lose $16051.50
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 35670 shares, $0.08 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 35670 shares at $0.43 to gain $15338.10
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.08 in capital, $15338.10 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.44, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.43, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.42, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.41, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.40, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.39, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.38, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.37, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.36, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.35, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.34, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.33, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $15338.1 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 49478 stocks at $0.31 a share to lose $15338.18
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 49478 shares, $0.00 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 49478 shares at $0.31 to gain $15338.18
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.00 in capital, $15338.18 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $15338.18 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 46479 stocks at $0.33 a share to lose $15338.07
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 46479 shares, $0.11 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.32, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 46479 shares at $0.28 to gain $13014.12
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.11 in capital, $13014.12 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.31, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.30, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $13014.12 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 46479 stocks at $0.28 a share to lose $13014.12
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 46479 shares, $0.11 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 46479 shares at $0.26 to gain $12084.54
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.11 in capital, $12084.54 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $12084.54 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 44757 stocks at $0.27 a share to lose $12084.39
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 44757 shares, $0.26 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 44757 shares at $0.26 to gain $11636.82
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.26 in capital, $11636.82 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $11636.82 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 43100 stocks at $0.27 a share to lose $11637.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 43100 shares, $0.08 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 43100 shares at $0.27 to gain $11637.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.08 in capital, $11637.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $11637 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 44758 stocks at $0.26 a share to lose $11637.08
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 44758 shares, $0.00 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 44758 shares at $0.25 to gain $11189.50
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.00 in capital, $11189.50 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $11189.5 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 43036 stocks at $0.26 a share to lose $11189.36
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 43036 shares, $0.14 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 43036 shares at $0.26 to gain $11189.36
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.14 in capital, $11189.36 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $11189.36 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 41442 stocks at $0.27 a share to lose $11189.34
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 41442 shares, $0.16 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 41442 shares at $0.26 to gain $10774.92
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.16 in capital, $10774.92 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $10774.92 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 41442 stocks at $0.26 a share to lose $10774.92
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 41442 shares, $0.16 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Sold 41442 shares at $0.25 to gain $10360.50
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 0 shares, $0.16 in capital, $10360.50 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Borrowing $10360.5 from gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Purchased 39848 stocks at $0.26 a share to lose $10360.48
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] 39848 shares, $0.18 in capital, $0.00 in gains
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.25, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.054Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Sold 39848 shares at $0.28 to gain $11157.44
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 0 shares, $0.18 in capital, $11157.44 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Borrowing $11157.44 from gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Purchased 38474 stocks at $0.29 a share to lose $11157.46
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 38474 shares, $0.16 in capital, $0.00 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Sold 38474 shares at $0.28 to gain $10772.72
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 0 shares, $0.16 in capital, $10772.72 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.29, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Borrowing $10772.720000000001 from gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Purchased 37147 stocks at $0.29 a share to lose $10772.63
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 37147 shares, $0.25 in capital, $0.00 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Sold 37147 shares at $0.28 to gain $10401.16
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 0 shares, $0.25 in capital, $10401.16 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.28, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Borrowing $10401.160000000002 from gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Purchased 37147 stocks at $0.28 a share to lose $10401.16
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 37147 shares, $0.25 in capital, $0.00 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Sold 37147 shares at $0.27 to gain $10029.69
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 0 shares, $0.25 in capital, $10029.69 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Borrowing $10029.69 from gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Purchased 37147 stocks at $0.27 a share to lose $10029.69
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 37147 shares, $0.25 in capital, $0.00 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Sold 37147 shares at $0.26 to gain $9658.22
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] 0 shares, $0.25 in capital, $9658.22 in gains
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.27, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
+2023-03-20T19:32:27.055Z TRACE [genetic::problems::stocks] Average: 0.26, 0.00, 0.00
