@@ -3,6 +3,7 @@ use crate::{
     problems::*,
 };
 use clap::Parser;
+use indicatif::ProgressStyle;
 use log::{trace, info, LevelFilter, debug};
 use simple_logger::SimpleLogger;
 
@@ -44,37 +45,50 @@ fn main() {
         indicatif::ProgressBar::new(args.max_generations as u64)
     };
 
+    pb.set_style(ProgressStyle::with_template("{msg} {wide_bar} {pos}/{len}").unwrap());
 
     trace!("Arguments: {:?}", args);
 
+    let evaluate = args.evaluate;
+
     let mut generation = Generation::from(args);
-    let mut best = generation.population[0].clone();
 
-    info!("Generation: 0 Best: {best}");
-
-    for i in 0..generation.population.len() {
-        debug!("\t{}", generation.population[i]);
-    }
-
-    for i in 1..generation.max_generations {
-        generation.generate_generation(i);
-
-        pb.inc(1);
-
-        let new = &generation.population[0];
-
-        if new.fitness > best.fitness {
-            best = new.clone();
+    if evaluate {
+        for i in 0..generation.population.len() {
+            println!("{}", generation.population[i]);
         }
+    } else {
+        let mut best = generation.best().unwrap().clone();
 
-        info!("Generation: {i} Best: {best}");
+        info!("Generation: 0 Best: {best}");
+
+        pb.set_message(format!("{:.2}", best.fitness.unwrap()));
 
         for i in 0..generation.population.len() {
             debug!("\t{}", generation.population[i]);
         }
+
+        for i in 1..generation.max_generations {
+            generation.generate_generation(i);
+
+            pb.inc(1);
+
+            let new = generation.best().unwrap();
+
+            if new.fitness > best.fitness {
+                best = new.clone();
+                pb.set_message(format!("{:.2}", best.fitness.unwrap()));
+            }
+
+            info!("Generation: {i} Best: {best}");
+
+            for i in 0..generation.population.len() {
+                debug!("\t{}", generation.population[i]);
+            }
+        }
+
+        pb.finish();
+
+        println!("Best Solution: {}", generation.problem.format(&best));
     }
-
-    pb.finish();
-
-    println!("Best Solution: {}", generation.problem.format(&best));
 }

@@ -318,12 +318,11 @@ pub mod stocks {
                             let d = denom
                                 .expect("Denominator must be provided for exponential average");
 
-                            (((p * d - stock[day - days - 1]) / a)
-                                + (stock[day - 1] * a.powf(*days as f64)))
-                                / d
+                            (((p * d - (stock[day - days - 1] * a.powf(*days as f64))) * a) + stock[day - 1]) / d
                         } else {
                             let (n, d, _) = stock[(day - days)..day]
                                 .iter()
+                                .rev()
                                 .fold((0.0, 0.0, 0.0), |(n, d, x), p| {
                                     (n + (p * a.powf(x)), d + a.powf(x), x + 1.0)
                                 });
@@ -341,13 +340,15 @@ pub mod stocks {
                         0.0
                     } else {
                         if let Some(p) = previous {
-                            p.max(stock[day - 1])
-                        } else {
-                            *stock[(day - *days)..day]
-                                .iter()
-                                .max_by(|a, b| a.partial_cmp(b).unwrap())
-                                .unwrap_or(&0.0)
+                            if stock[day - days - 1] != p {
+                                return p.max(stock[day - 1]);
+                            }
                         }
+
+                        *stock[(day - *days)..day]
+                            .iter()
+                            .max_by(|a, b| a.partial_cmp(b).unwrap())
+                            .unwrap_or(&0.0)
                     }
                 }
             }
@@ -529,10 +530,10 @@ pub mod stocks {
                     };
 
                     if buy {
-                        trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
+                        //trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
                         Market::buy(&mut actor, stock[day]);
                     } else if days.0 <= day || days.1 <= day || days.2 <= day {
-                        trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
+                        //trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
                         Market::sell(&mut actor, stock[day]);
                     }
                 }
@@ -550,7 +551,7 @@ pub mod stocks {
             debug!("Average return: ${:.2}", avg);
 
             // Simple sigmoid function
-            Fitness::Valid(f64::trunc(avg * 100.0) / 100.0)
+            Fitness::Valid(avg)
         }
 
         fn mutate(&self, mutation_rate: f64, force_mutation: bool, g: &mut Genotype) {
@@ -628,19 +629,24 @@ pub mod stocks {
                 match i {
                     0 | 5 | 10 => {
                         g.genotype.push(methods[rng.gen_range(0..=2)]);
-                    }
+                    },
                     1 | 2 | 6 | 7 | 11 | 12 => {
                         g.genotype.push(b'0' + rng.gen_range(0..2) as u8);
-                    }
+                    },
                     2..=3 | 7..=8 | 12..=13 => {
                         g.genotype.push(b'0' + rng.gen_range(0..=9) as u8);
-                    }
+                    },
+                    /*
+                    1..=3 | 6..=8 | 11..=13 => {
+                        g.genotype.push(b'0' + rng.gen_range(0..=9) as u8);
+                    },
+                */
                     4 | 9 => {
                         g.genotype.push(operators[rng.gen_range(0..=1)]);
-                    }
+                    },
                     _ => {
                         panic!("Invalid genotype!");
-                    }
+                    },
                 }
             }
 
