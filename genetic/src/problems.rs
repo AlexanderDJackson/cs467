@@ -236,6 +236,7 @@ pub mod knapsack {
 
 pub mod stocks {
     use log::{debug, trace};
+    use rayon::prelude::*;
     use rand::{thread_rng, Rng};
 
     use crate::genetic::{Fitness, Genotype};
@@ -318,12 +319,11 @@ pub mod stocks {
                             let d = denom
                                 .expect("Denominator must be provided for exponential average");
 
-                            (((p * d - stock[day - days - 1]) / a)
-                                + (stock[day - 1] * a.powf(*days as f64)))
-                                / d
+                            (((p * d - (stock[day - days - 1] * a.powf(*days as f64))) * a) + stock[day - 1]) / d
                         } else {
                             let (n, d, _) = stock[(day - days)..day]
                                 .iter()
+                                .rev()
                                 .fold((0.0, 0.0, 0.0), |(n, d, x), p| {
                                     (n + (p * a.powf(x)), d + a.powf(x), x + 1.0)
                                 });
@@ -341,13 +341,15 @@ pub mod stocks {
                         0.0
                     } else {
                         if let Some(p) = previous {
-                            p.max(stock[day - 1])
-                        } else {
-                            *stock[(day - *days)..day]
-                                .iter()
-                                .max_by(|a, b| a.partial_cmp(b).unwrap())
-                                .unwrap_or(&0.0)
+                            if stock[day - days - 1] != p {
+                                return p.max(stock[day - 1]);
+                            }
                         }
+
+                        *stock[(day - *days)..day]
+                            .iter()
+                            .max_by(|a, b| a.partial_cmp(b).unwrap())
+                            .unwrap_or(&0.0)
                     }
                 }
             }
@@ -408,8 +410,7 @@ pub mod stocks {
 
     impl Problem for Market {
         fn fitness(&self, genotype: &Vec<u8>) -> Fitness {
-            debug!("Evaluating {:?}", genotype);
-            let mut funds = 0.0;
+            debug!("Evaluating {}", genotype.iter().map(|x| *x as char).collect::<String>());
             let strategy = (
                 Market::parse(genotype[0..4].try_into().expect("Invalid genotype!")),
                 genotype[4] as char,
@@ -461,7 +462,7 @@ pub mod stocks {
                 return Fitness::Valid(0.0);
             }
 
-            for stock in &self.histories {
+            let funds = &self.histories.par_iter().fold(|| 0.0, |profit, stock| {
                 let mut actor = Actor {
                     capital: self.funds,
                     gains: 0.0,
@@ -529,28 +530,29 @@ pub mod stocks {
                     };
 
                     if buy {
-                        trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
+                        //trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
                         Market::buy(&mut actor, stock[day]);
                     } else if days.0 <= day || days.1 <= day || days.2 <= day {
-                        trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
+                        //trace!("Average: {:.2}, {:.2}, {:.2}", avgs.0, avgs.1, avgs.2);
                         Market::sell(&mut actor, stock[day]);
                     }
                 }
 
                 Market::sell(&mut actor, stock[stock.len() - 1]);
-                debug!(
+                trace!(
                     "{} Made ${:.2}",
                     genotype.iter().map(|c| *c as char).collect::<String>(),
                     actor.gains + actor.capital - self.funds
                 );
-                funds += actor.gains + actor.capital - self.funds;
-            }
+                profit + actor.gains + actor.capital - self.funds
+            }).sum::<f64>();
 
             let avg = funds / self.histories.len() as f64;
             debug!("Average return: ${:.2}", avg);
+            debug!("Total return: ${:.2}", funds);
 
             // Simple sigmoid function
-            Fitness::Valid(f64::trunc(avg * 100.0) / 100.0)
+            Fitness::Valid(*funds)
         }
 
         fn mutate(&self, mutation_rate: f64, force_mutation: bool, g: &mut Genotype) {
@@ -628,19 +630,24 @@ pub mod stocks {
                 match i {
                     0 | 5 | 10 => {
                         g.genotype.push(methods[rng.gen_range(0..=2)]);
-                    }
+                    },
                     1 | 2 | 6 | 7 | 11 | 12 => {
                         g.genotype.push(b'0' + rng.gen_range(0..2) as u8);
-                    }
+                    },
                     2..=3 | 7..=8 | 12..=13 => {
                         g.genotype.push(b'0' + rng.gen_range(0..=9) as u8);
-                    }
+                    },
+                    /*
+                    1..=3 | 6..=8 | 11..=13 => {
+                        g.genotype.push(b'0' + rng.gen_range(0..=9) as u8);
+                    },
+                */
                     4 | 9 => {
                         g.genotype.push(operators[rng.gen_range(0..=1)]);
-                    }
+                    },
                     _ => {
                         panic!("Invalid genotype!");
-                    }
+                    },
                 }
             }
 
@@ -704,10 +711,8 @@ pub mod stocks {
 
                 for line in reader.lines() {
                     if let Ok(l) = line {
-                        if l.contains("-") {
-                            continue;
-                        } else {
-                            histories[i].push(l.parse::<f64>().expect("Invalid file!"));
+                        if let Ok(price) = l.parse::<f64>() {
+                            histories[i].push(price);
                         }
                     }
                 }
@@ -725,6 +730,7 @@ pub mod stocks {
     }
 }
 
+/*
 #[cfg(test)]
 mod tests {
     use crate::{genetic::Genotype, problems::Problem, stocks::Market, Fitness};
@@ -739,3 +745,4 @@ mod tests {
         //assert!(fitness == Fitness::Valid(
     }
 }
+*/

@@ -1,21 +1,20 @@
 use crate::problems::*;
 use clap::{Parser, ValueEnum};
-use log::{debug, error, info, trace, warn};
+use log::{debug, error, info, trace};
 use rand::{
     distributions::{Distribution, WeightedIndex},
     seq::IteratorRandom,
     Rng,
 };
 use std::{
-    cmp::Ordering,
     fmt::{Display, Formatter, Result},
     panic,
 };
 
-#[derive(Clone, PartialEq, PartialOrd)]
+#[derive(Clone, Debug)]
 pub struct Genotype {
-    pub genotype: Vec<u8>,
     pub fitness: Fitness,
+    pub genotype: Vec<u8>,
 }
 
 pub struct Generation {
@@ -108,7 +107,8 @@ impl Display for Fitness {
     }
 }
 
-impl Fitness {
+/*
+impl Ord for Fitness {
     fn cmp(&self, other: &Self) -> Ordering {
         let lhs = match self {
             Fitness::Valid(fitness) => fitness,
@@ -120,19 +120,70 @@ impl Fitness {
             Fitness::Invalid => &-1.0,
         };
 
-        if lhs.is_nan() {
-            if rhs.is_nan() {
-                Ordering::Equal
-            } else {
-                Ordering::Less
-            }
-        } else if rhs.is_nan() {
-            Ordering::Greater
-        } else {
-            lhs.total_cmp(rhs)
+        lhs.total_cmp(rhs)
+    }
+}
+
+impl PartialOrd for Fitness {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        let lhs = match self {
+            Fitness::Valid(fitness) => fitness,
+            Fitness::Invalid => &-1.0,
+        };
+
+        let rhs = match other {
+            Fitness::Valid(fitness) => fitness,
+            Fitness::Invalid => &-1.0,
+        };
+
+        Some(lhs.total_cmp(rhs))
+    }
+}
+
+impl PartialEq for Fitness {
+    fn eq(&self, other: &Self) -> bool {
+        match self {
+            Fitness::Valid(fitness) => match other {
+                Fitness::Valid(other_fitness) => fitness == other_fitness,
+                Fitness::Invalid => false,
+            },
+            Fitness::Invalid => match other {
+                Fitness::Valid(_) => false,
+                Fitness::Invalid => true,
+            },
         }
     }
 }
+*/
+
+impl Fitness {
+    pub fn unwrap(&self) -> f64 {
+        match self {
+            Fitness::Valid(fitness) => *fitness,
+            Fitness::Invalid => panic!("Fitness is invalid!"),
+        }
+    }
+}
+
+/*
+impl Ord for Genotype {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.fitness.cmp(&other.fitness)
+    }
+}
+
+impl PartialOrd for Genotype {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        self.fitness.partial_cmp(&other.fitness)
+    }
+}
+
+impl PartialEq for Genotype {
+    fn eq(&self, other: &Self) -> bool {
+        self.fitness == other.fitness
+    }
+}
+*/
 
 impl Genotype {
     pub fn len(&self) -> usize {
@@ -227,20 +278,33 @@ impl Generation {
             generation.population.push(Genotype::from(g, fit));
         }
 
-        if generation.population.len() < generation.population.capacity() {
+        if !args.evaluate && generation.population.len() < generation.population.capacity() {
             generation.generate_genitors();
         }
 
-        generation.population.sort_by(|a, b| b.fitness.cmp(&a.fitness));
+        generation.population.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).expect("Illegal fitness"));
 
         generation
+    }
+
+    pub fn best(&self) -> Option<&Genotype> {
+        if self.population.len() > 0 {
+            Some(
+                self.population
+                    .iter()
+                    .max_by(|a, b| a.fitness.partial_cmp(&b.fitness).expect("Illegal fitness"))
+                    .unwrap(),
+            )
+        } else {
+            None
+        }
     }
 
     pub fn select_genitors(&mut self) {
         let mut rng = rand::thread_rng();
 
         // prioritize the best performers with a reverse sort
-        self.population.sort_by(|a, b| b.fitness.cmp(&a.fitness));
+        self.population.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).expect("Illegal fitness"));
 
         // prepare the pool of genitors
         self.intermediate.clear();
@@ -287,20 +351,20 @@ impl Generation {
                             match genotype.fitness {
                                 Fitness::Valid(fit) => {
                                     let mut f = fit / avg_fit;
-                                    trace!("Fitness = {f} (avg = {avg_fit})");
+                                    debug!("Fitness = {f} (avg = {avg_fit})");
 
                                     // ensure we don't overfill the pool
                                     while f > 0.0 {
                                         if self.intermediate.len() == self.intermediate.capacity() {
                                             break;
                                         } else if f > 1.0 {
-                                            trace!("Pushing {genotype} into the pool");
+                                            debug!("Pushing {genotype} into the pool");
                                             self.intermediate.push(genotype.clone());
                                             pushed += 1;
                                             f -= 1.0;
                                         } else {
                                             if rng.gen_bool(f) {
-                                                trace!("Pushing {genotype} into the pool");
+                                                debug!("Pushing {genotype} into the pool");
                                                 self.intermediate.push(genotype.clone());
                                                 pushed += 1;
                                             }
@@ -368,7 +432,11 @@ impl Generation {
             panic!("All genotypes were invalid! Either try again or supply valid ones.");
         }
 
-        self.intermediate.iter().for_each(|g| trace!("{g}"));
+        // prioritize the best performers with a reverse sort
+        self.intermediate.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).expect("Illegal fitness"));
+
+        debug!("Intermediate Population:");
+        self.intermediate.iter().for_each(|g| debug!("\t{g}"));
     }
 
     pub fn generate_genitors(&mut self) {
@@ -413,7 +481,7 @@ impl Generation {
         let old = self.mutation_rate;
 
         if self.detect_crowding > 0.0 && self.detected_crowding() {
-            warn!("Crowding detected! Ramping up mutation rate for a generation.");
+            debug!("Crowding detected! Ramping up mutation rate for a generation.");
             self.mutation_rate = 0.2;
         }
 
@@ -436,12 +504,18 @@ impl Generation {
         }
 
         // prioritize the best performers with a reverse sort
-        self.population.sort_by(|a, b| b.fitness.cmp(&a.fitness));
+        self.population.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).expect("Illegal fitness"));
+
+        /*
+        for i in self.population[..].iter() {
+            println!("{i}");
+        }
+        */
 
         self.mutation_rate = old;
 
-        info!("Generation {num_generation}");
         info!("--------------------------");
+        info!("Generation {num_generation}");
 
         let mut invalid = 0;
 
@@ -456,7 +530,6 @@ impl Generation {
 
         info!("{invalid} invalid genotypes");
         info!("--------------------------");
-        info!("");
     }
 }
 
@@ -464,6 +537,10 @@ impl Generation {
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about)]
 pub struct Args {
+    /// Print n best genotypes from all generations
+    #[arg(short, long, default_value_t = 1)]
+    pub best: usize,
+
     /// Force create genitors until valid
     #[arg(short = 'c', long, default_value_t = false)]
     pub force_create: bool,
@@ -472,9 +549,9 @@ pub struct Args {
     #[arg(short, long, default_value_t = 0.0)]
     pub detect_crowding: f64,
 
-    /// The maximum number of generations
-    #[arg(short = 'e', long, default_value_t = 100)]
-    pub max_generations: usize,
+    /// Evaluate the fitness of the given genitors
+    #[arg(short, long, default_value_t = false)]
+    pub evaluate: bool,
 
     /// Force mutation if one occurs
     #[arg(short, long, default_value_t = false)]
@@ -500,6 +577,10 @@ pub struct Args {
     #[arg(short, long, default_value_t = 0.01)]
     pub mutation_rate: f64,
 
+    /// The maximum number of generations
+    #[arg(short = 'M', long, default_value_t = 100)]
+    pub max_generations: usize,
+
     /// Progress bar
     #[arg(short = 'o', long, default_value_t = false)]
     pub progress: bool,
@@ -523,4 +604,21 @@ pub struct Args {
     /// The method used to produce subsequent generations from genitors
     #[arg(short = 'x', long, value_enum, default_value_t = SexMethod::Uniform)]
     pub sex_method: SexMethod,
+}
+
+#[cfg(test)]
+pub mod tests {
+    #[test]
+    fn test_fitness_cmp() {
+        use super::Fitness;
+
+        assert!(Fitness::Valid(1.0) > Fitness::Valid(0.0));
+        assert!(Fitness::Valid(0.0) < Fitness::Valid(1.0));
+        assert!(Fitness::Valid(0.0) == Fitness::Valid(0.0));
+        assert!(Fitness::Valid(1.0) != Fitness::Valid(0.0));
+        assert!(Fitness::Valid(0.0) != Fitness::Valid(1.0));
+        assert!(Fitness::Valid(0.0) != Fitness::Invalid);
+        assert!(Fitness::Invalid != Fitness::Valid(0.0));
+        assert!(Fitness::Invalid == Fitness::Invalid);
+    }
 }
