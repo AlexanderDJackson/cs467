@@ -1,13 +1,12 @@
 use crate::problems::*;
 use clap::{Parser, ValueEnum};
-use log::{debug, error, info, trace, warn};
+use log::{debug, error, info, trace};
 use rand::{
     distributions::{Distribution, WeightedIndex},
     seq::IteratorRandom,
     Rng,
 };
 use std::{
-    cmp::Ordering,
     fmt::{Display, Formatter, Result},
     panic,
 };
@@ -32,7 +31,7 @@ pub struct Generation {
     pub sex_method: SexMethod,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq, PartialOrd)]
 pub enum Fitness {
     Valid(f64),
     Invalid,
@@ -108,6 +107,7 @@ impl Display for Fitness {
     }
 }
 
+/*
 impl Ord for Fitness {
     fn cmp(&self, other: &Self) -> Ordering {
         let lhs = match self {
@@ -126,11 +126,19 @@ impl Ord for Fitness {
 
 impl PartialOrd for Fitness {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(self.cmp(other))
+        let lhs = match self {
+            Fitness::Valid(fitness) => fitness,
+            Fitness::Invalid => &-1.0,
+        };
+
+        let rhs = match other {
+            Fitness::Valid(fitness) => fitness,
+            Fitness::Invalid => &-1.0,
+        };
+
+        Some(lhs.total_cmp(rhs))
     }
 }
-
-impl Eq for Fitness {}
 
 impl PartialEq for Fitness {
     fn eq(&self, other: &Self) -> bool {
@@ -146,6 +154,7 @@ impl PartialEq for Fitness {
         }
     }
 }
+*/
 
 impl Fitness {
     pub fn unwrap(&self) -> f64 {
@@ -156,6 +165,7 @@ impl Fitness {
     }
 }
 
+/*
 impl Ord for Genotype {
     fn cmp(&self, other: &Self) -> Ordering {
         self.fitness.cmp(&other.fitness)
@@ -164,17 +174,16 @@ impl Ord for Genotype {
 
 impl PartialOrd for Genotype {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(self.cmp(other))
+        self.fitness.partial_cmp(&other.fitness)
     }
 }
-
-impl Eq for Genotype {}
 
 impl PartialEq for Genotype {
     fn eq(&self, other: &Self) -> bool {
         self.fitness == other.fitness
     }
 }
+*/
 
 impl Genotype {
     pub fn len(&self) -> usize {
@@ -273,7 +282,7 @@ impl Generation {
             generation.generate_genitors();
         }
 
-        generation.population.sort_by(|a, b| b.cmp(&a));
+        generation.population.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).expect("Illegal fitness"));
 
         generation
     }
@@ -283,7 +292,7 @@ impl Generation {
             Some(
                 self.population
                     .iter()
-                    .max_by(|a, b| a.fitness.cmp(&b.fitness))
+                    .max_by(|a, b| a.fitness.partial_cmp(&b.fitness).expect("Illegal fitness"))
                     .unwrap(),
             )
         } else {
@@ -295,7 +304,7 @@ impl Generation {
         let mut rng = rand::thread_rng();
 
         // prioritize the best performers with a reverse sort
-        self.population.sort_by(|a, b| b.cmp(&a));
+        self.population.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).expect("Illegal fitness"));
 
         // prepare the pool of genitors
         self.intermediate.clear();
@@ -342,20 +351,20 @@ impl Generation {
                             match genotype.fitness {
                                 Fitness::Valid(fit) => {
                                     let mut f = fit / avg_fit;
-                                    trace!("Fitness = {f} (avg = {avg_fit})");
+                                    debug!("Fitness = {f} (avg = {avg_fit})");
 
                                     // ensure we don't overfill the pool
                                     while f > 0.0 {
                                         if self.intermediate.len() == self.intermediate.capacity() {
                                             break;
                                         } else if f > 1.0 {
-                                            trace!("Pushing {genotype} into the pool");
+                                            debug!("Pushing {genotype} into the pool");
                                             self.intermediate.push(genotype.clone());
                                             pushed += 1;
                                             f -= 1.0;
                                         } else {
                                             if rng.gen_bool(f) {
-                                                trace!("Pushing {genotype} into the pool");
+                                                debug!("Pushing {genotype} into the pool");
                                                 self.intermediate.push(genotype.clone());
                                                 pushed += 1;
                                             }
@@ -424,9 +433,10 @@ impl Generation {
         }
 
         // prioritize the best performers with a reverse sort
-        self.population.sort_by(|a, b| b.cmp(&a));
+        self.intermediate.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).expect("Illegal fitness"));
 
-        self.intermediate.iter().for_each(|g| trace!("{g}"));
+        debug!("Intermediate Population:");
+        self.intermediate.iter().for_each(|g| debug!("\t{g}"));
     }
 
     pub fn generate_genitors(&mut self) {
@@ -471,7 +481,7 @@ impl Generation {
         let old = self.mutation_rate;
 
         if self.detect_crowding > 0.0 && self.detected_crowding() {
-            warn!("Crowding detected! Ramping up mutation rate for a generation.");
+            debug!("Crowding detected! Ramping up mutation rate for a generation.");
             self.mutation_rate = 0.2;
         }
 
@@ -494,7 +504,13 @@ impl Generation {
         }
 
         // prioritize the best performers with a reverse sort
-        self.population.sort_by(|a, b| b.cmp(&a));
+        self.population.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).expect("Illegal fitness"));
+
+        /*
+        for i in self.population[..].iter() {
+            println!("{i}");
+        }
+        */
 
         self.mutation_rate = old;
 
@@ -521,6 +537,10 @@ impl Generation {
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about)]
 pub struct Args {
+    /// Print n best genotypes from all generations
+    #[arg(short, long, default_value_t = 1)]
+    pub best: usize,
+
     /// Force create genitors until valid
     #[arg(short = 'c', long, default_value_t = false)]
     pub force_create: bool,

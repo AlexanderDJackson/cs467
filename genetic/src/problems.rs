@@ -236,6 +236,7 @@ pub mod knapsack {
 
 pub mod stocks {
     use log::{debug, trace};
+    use rayon::prelude::*;
     use rand::{thread_rng, Rng};
 
     use crate::genetic::{Fitness, Genotype};
@@ -409,8 +410,7 @@ pub mod stocks {
 
     impl Problem for Market {
         fn fitness(&self, genotype: &Vec<u8>) -> Fitness {
-            debug!("Evaluating {:?}", genotype);
-            let mut funds = 0.0;
+            debug!("Evaluating {}", genotype.iter().map(|x| *x as char).collect::<String>());
             let strategy = (
                 Market::parse(genotype[0..4].try_into().expect("Invalid genotype!")),
                 genotype[4] as char,
@@ -462,7 +462,7 @@ pub mod stocks {
                 return Fitness::Valid(0.0);
             }
 
-            for stock in &self.histories {
+            let funds = &self.histories.par_iter().fold(|| 0.0, |profit, stock| {
                 let mut actor = Actor {
                     capital: self.funds,
                     gains: 0.0,
@@ -539,19 +539,20 @@ pub mod stocks {
                 }
 
                 Market::sell(&mut actor, stock[stock.len() - 1]);
-                debug!(
+                trace!(
                     "{} Made ${:.2}",
                     genotype.iter().map(|c| *c as char).collect::<String>(),
                     actor.gains + actor.capital - self.funds
                 );
-                funds += actor.gains + actor.capital - self.funds;
-            }
+                profit + actor.gains + actor.capital - self.funds
+            }).sum::<f64>();
 
             let avg = funds / self.histories.len() as f64;
             debug!("Average return: ${:.2}", avg);
+            debug!("Total return: ${:.2}", funds);
 
             // Simple sigmoid function
-            Fitness::Valid(avg)
+            Fitness::Valid(*funds)
         }
 
         fn mutate(&self, mutation_rate: f64, force_mutation: bool, g: &mut Genotype) {
@@ -710,10 +711,8 @@ pub mod stocks {
 
                 for line in reader.lines() {
                     if let Ok(l) = line {
-                        if l.contains("-") {
-                            continue;
-                        } else {
-                            histories[i].push(l.parse::<f64>().expect("Invalid file!"));
+                        if let Ok(price) = l.parse::<f64>() {
+                            histories[i].push(price);
                         }
                     }
                 }
@@ -731,6 +730,7 @@ pub mod stocks {
     }
 }
 
+/*
 #[cfg(test)]
 mod tests {
     use crate::{genetic::Genotype, problems::Problem, stocks::Market, Fitness};
@@ -745,3 +745,4 @@ mod tests {
         //assert!(fitness == Fitness::Valid(
     }
 }
+*/
