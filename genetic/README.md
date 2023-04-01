@@ -1,0 +1,3 @@
+# Running
+
+cargo run -- -h
