@@ -558,7 +558,7 @@ pub struct Args {
     pub force_mutation: bool,
 
     /// The file needed for whatever problem
-    #[arg(long, num_args = 1..)]
+    #[arg(long, required = true, num_args = 1..)]
     pub file: Vec<String>,
 
     /// The initial population of genitors
@@ -590,16 +590,12 @@ pub struct Args {
     pub population: usize,
 
     /// The problem for which to generate solutions
-    #[arg(short = 'r', long, value_enum, default_value_t = ProblemType::Knapsack)]
+    #[arg(short = 'r', long, required = true, value_enum, default_value_t = ProblemType::Knapsack)]
     pub problem: ProblemType,
 
     /// The method of selection used to produce genitors from a population
     #[arg(short, long, value_enum, default_value_t = SelectionMethod::Equal)]
     pub selection_method: SelectionMethod,
-
-    /// Use multiple threads
-    #[arg(short, long, default_value_t = false)]
-    pub threads: bool,
 
     /// The method used to produce subsequent generations from genitors
     #[arg(short = 'x', long, value_enum, default_value_t = SexMethod::Uniform)]
