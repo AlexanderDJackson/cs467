@@ -55,14 +55,25 @@ fn main() {
     let mut generation = Generation::from(args);
 
     if evaluate {
-        println!("Genotype\tAverage \tTotal");
-        for g in generation.population {
-            println!(
-                "{}\t${:.2}\t${:.2}",
-                g.genotype.iter().map(|x| *x as char).collect::<String>(),
-                g.fitness.unwrap() / histories as f64,
-                g.fitness.unwrap()
-            );
+        if histories > 1 {
+            println!("Genotype\tAverage \tTotal");
+            for g in generation.population {
+                println!(
+                    "{}\t${:.2}\t${:.2}",
+                    g.genotype.iter().map(|x| *x as char).collect::<String>(),
+                    g.fitness.unwrap() / histories as f64,
+                    g.fitness.unwrap()
+                );
+            }
+        } else {
+            println!("Genotype\tFitness");
+            for g in generation.population {
+                println!(
+                    "{}\t${:.2}",
+                    g.genotype.iter().map(|x| *x as char).collect::<String>(),
+                    g.fitness.unwrap()
+                );
+            }
         }
     } else {
         assert!(num > 0, "Number of best solutions must be greater than 0");

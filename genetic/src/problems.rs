@@ -723,7 +723,7 @@ pub mod stocks {
                     b'&', b'|', b's', b'e', b'm', b'0', b'1', b'2', b'3', b'4', b'5', b'6', b'7',
                     b'8', b'9',
                 ],
-                funds: 20000.0,
+                funds: 100000.0,
                 histories,
             })
         }

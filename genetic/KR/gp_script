@@ -1,0 +1,4 @@
+set terminal png
+set font 'Times-Roman,12'
+set output 'KR.png'
+plot 'KR-1.txt' with lines linewidth 2 title 'January 2004 - December 2007', 'KR-2.txt' with lines linewidth 2 title 'January 2010 - December 2012', 'KR-3.txt' with lines linewidth 2 title 'January 2015 - December 2016'
