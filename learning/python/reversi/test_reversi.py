@@ -1,4 +1,4 @@
-from test import Game, pretty_print
+from main import Game, pretty_print
 from randomplayer import RandomPlayer
 
 # decide if pieces are flippable in this direction

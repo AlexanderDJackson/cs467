@@ -1,16 +1,17 @@
-from bitarray import bitarray
-from curses import wrapper
+from bitarray import bitarray, util
 
 
-class Board:
+class Game:
     board: bitarray
     mask: bitarray
     next: bool
+    done: bool
 
     def __init__(self, board: bitarray, mask: bitarray, next: bool = True):
         self.board = board
         self.mask = mask
         self.next = next
+        self.done = not mask.any()
 
     @staticmethod
     def from_string(board: str, next: str):
@@ -23,9 +24,14 @@ class Board:
                      .replace("O", "1")
                      .replace("-", "0"))
 
-        return Board(b, m, next == "X")
+        return Game(b, m, next == "X")
 
-    def check_directions(self, x: int) -> int:
+    def check_directions(self, x: int, piece=None) -> int:
+        if piece is None:
+            piece = self.next
+        else:
+            piece = piece == "X"
+
         directions = bitarray('0' * 8)
 
         # Check clockwise:
@@ -39,7 +45,7 @@ class Board:
                 if -1 <= (old % 6) - (i % 6) <= 1:  # bounds check
                     if not self.mask[i]:  # If the space is empty
                         break
-                    if (self.board[i] & self.mask[i]) ^ self.next:
+                    if (self.board[i] & self.mask[i]) ^ piece:
                         to_flip = True
                     elif to_flip:
                         directions[n] = 1
@@ -61,12 +67,15 @@ class Board:
 
         b = "".join(b)
 
+        return f"{b[:6]}{b[6:12]}{b[12:18]}{b[18:24]}{b[24:30]}{b[30:]}"
+        """
         return f"{b[:6]}\n" \
             f"{b[6:12]}\n" \
             f"{b[12:18]}\n" \
             f"{b[18:24]}\n" \
             f"{b[24:30]}\n" \
             f"{b[30:]}"
+        """
 
     def move(self, x: int, directions: int):
         new_mask = bitarray(self.mask)
@@ -84,7 +93,7 @@ class Board:
                     else:
                         break
 
-        return Board(new_board, new_mask, not self.next)
+        return Game(new_board, new_mask, not self.next)
 
     def moves(self):
         moves = []
@@ -94,6 +103,17 @@ class Board:
                 valid = self.check_directions(i)
                 if valid.any():
                     moves.append(self.move(i, valid))
+
+        # If no moves are available, check if the game is over
+        if not moves:
+            test = 0
+            for i in range(36):
+                if not self.mask[i]:
+                    test += util.ba2int(self.check_directions(i,
+                                        not self.next))
+            if not test:
+                self.done = True
+                return None
 
         return moves
 
@@ -120,18 +140,24 @@ class Board:
         return color(b)
 
 
-def main(stdscr):
-    stdscr.clear()
+def pretty_print(board: str, color: bool = False) -> str:
+    if color:
+        # Print the background in gray
+        # Make the X's Black and the O's White
+        def color(s: str):
+            return f"\033[48;5;8m\033[38;5;0m{s}\033[0m"
+    else:
+        def color(s: str):
+            return s
 
-    _ = Board(
-        bitarray('000000000000001000000100000000000000'),
-        bitarray('000000000000001100001100000000000000'),
-        True
-    )
-    board = Board.from_string("--------------XO----OX--------------", "X")
+    b = "╔═══╦═══╦═══╦═══╦═══╦═══╗\n║"
+    for i in range(36):
+        if i % 6 == 0 and i != 0:
+            b += "\n╠═══╬═══╬═══╬═══╬═══╬═══╣\n║"
 
-    stdscr.addstr(board.pretty())
-
-
-if __name__ == "__main__":
-    wrapper(main)
+        if board[i] != '-':
+            b += f" {board[i]} ║"
+        else:
+            b += "   ║"
+    b += "\n╚═══╩═══╩═══╩═══╩═══╩═══╝"
+    return color(b)
